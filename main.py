@@ -1,3 +1,6 @@
 
+import pygame
 
-print ("hello there")
+
+
+pygame.init()
