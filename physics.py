@@ -1,12 +1,11 @@
 from utilitary import coord
 
 class element():
-    def __init__(self, object_list, points_list, coord, speed=coord(0,0), accel=coord(0,0), tempo=1):
+    def __init__(self, GV, points_list, coord, speed=coord(0,0), accel=coord(0,0), tempo=1):
         self.center=physical_point(coord, speed, accel, tempo)
         self.points_list=points_list
 
-        object_list.append(self)
-        return object_list
+        GV.obj_list.append(self)
 
     def update(self, obstacle_list):
         new_coord=self.center.move()
