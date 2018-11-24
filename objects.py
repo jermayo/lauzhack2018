@@ -14,6 +14,22 @@ class rect():
         pygame.draw.rect(surface, color, self.draw_info, 0)
 
 
+class bullet():
+
+    def __init__(self, x, y, angle):
+        self.x = x
+        self.y = y
+        self.angle = angle
+        self.speed = 5
+
+    def image(self, main):
+        pygame.draw.circle(main, (0,0,0), [self.x, self.y], 1)
+        self.x += int(math.cos(angle) * speed)
+        self.y += int(math.sin(angle) * speed)
+
+
+
+
 class turret():
 
     def __init__(self, x, y):
