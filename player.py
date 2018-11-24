@@ -47,25 +47,52 @@ class player():
         pygame.draw.line(main, (0,0,0), [legRX, legRY], [int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(legRY - math.sin(self.angle_r_knee) * self.size * 0.8)])
 
 
-    def run(self, time):
-        self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
-        self.angle_l_leg = 3 / 16*math.pi * math.cos(time) - math.pi / 2
-        self.angle_r_leg = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2
-        self.angle_l_arm = 3 / 16*math.pi * math.cos(time) - math.pi / 2
-        self.angle_r_arm = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2
-        if(time % (2*math.pi) < math.pi):
-            self.angle_l_knee = 3 / 16*math.pi * math.cos(time) - math.pi / 8 * 5
-        elif(time % (2*math.pi) < 14 * math.pi / 8):
-            self.angle_l_knee = -13 * math.pi / 16
-        else:
-            self.angle_l_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time - 14 * math.pi / 8))
+    def stationary(self):
+        self.angle_body=math.pi/2
+        self.angle_l_arm=-2 * math.pi / 3
+        self.angle_r_arm=-math.pi / 3
+        self.angle_l_leg=-2 * math.pi / 3
+        self.angle_r_leg=-math.pi / 3
+        self.angle_l_knee=-math.pi / 16 * 9
+        self.angle_r_knee=-math.pi / 16 * 7
 
-        if((time + math.pi) % (2*math.pi) < math.pi):
-            self.angle_r_knee = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 8 * 5
-        elif((time + math.pi) % (2*math.pi) < 14 * math.pi / 8):
-            self.angle_r_knee = -13 * math.pi / 16
+    def run(self, time):
+        if(right):
+            self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
+            self.angle_l_leg = 3 / 16*math.pi * math.cos(time) - math.pi / 2
+            self.angle_r_leg = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2
+            self.angle_l_arm = 3 / 16*math.pi * math.cos(time) - math.pi / 2
+            self.angle_r_arm = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2
+            if(time % (2*math.pi) < math.pi):
+                self.angle_l_knee = 3 / 16*math.pi * math.cos(time) - math.pi / 8 * 5
+            elif(time % (2*math.pi) < 14 * math.pi / 8):
+                self.angle_l_knee = -13 * math.pi / 16
+            else:
+                self.angle_l_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time - 14 * math.pi / 8))
+                if((time + math.pi) % (2*math.pi) < math.pi):
+                    self.angle_r_knee = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 8 * 5
+                elif((time + math.pi) % (2*math.pi) < 14 * math.pi / 8):
+                    self.angle_r_knee = -13 * math.pi / 16
+                else:
+                    self.angle_r_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time + math.pi - 14 * math.pi / 8))
         else:
-            self.angle_r_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time + math.pi - 14 * math.pi / 8))
+            self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
+            self.angle_l_leg = math.pi - (3 / 16*math.pi * math.cos(time) - math.pi / 2)
+            self.angle_r_leg = math.pi - (3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2)
+            self.angle_l_arm = math.pi - (3 / 16*math.pi * math.cos(time) - math.pi / 2)
+            self.angle_r_arm = math.pi - (3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2)
+            if(time % (2*math.pi) < math.pi):
+                self.angle_l_knee = math.pi - (3 / 16*math.pi * math.cos(time) - math.pi / 8 * 5)
+            elif(time % (2*math.pi) < 14 * math.pi / 8):
+                self.angle_l_knee = math.pi - (-13 * math.pi / 16)
+            else:
+                self.angle_l_knee = math.pi - (-13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time - 14 * math.pi / 8)))
+                if((time + math.pi) % (2*math.pi) < math.pi):
+                    self.angle_r_knee = math.pi - (3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 8 * 5)
+                elif((time + math.pi) % (2*math.pi) < 14 * math.pi / 8):
+                    self.angle_r_knee = math.pi - (-13 * math.pi / 16)
+                else:
+                    self.angle_r_knee = math.pi - (-13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time + math.pi - 14 * math.pi / 8)))
 
     def getCoord(self):
         head1 = utilitary.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size) - self.size)
