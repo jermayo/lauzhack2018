@@ -4,6 +4,7 @@ class GlobalVariable():
     def __init__(self):
         self.obj_list=[]
         self.main=0
+        self.timeSpeed = 1
 
 def coord(x,y):
     return {"x":x, "y":y}
