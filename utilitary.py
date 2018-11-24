@@ -2,6 +2,7 @@ import math
 
 class GlobalVariable():
     def __init__(self):
+        self.elem_list=[]
         self.obj_list=[]
         self.main=0
         self.timeSpeed = 1

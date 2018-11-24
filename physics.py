@@ -5,7 +5,7 @@ class element():
         self.center=physical_point(coord, speed, accel, tempo)
         self.points_list=points_list
 
-        GV.obj_list.append(self)
+        GV.elem_list.append(self)
 
     def update(self, obstacle_list):
         new_coord=self.center.move()
