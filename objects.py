@@ -9,6 +9,7 @@ class rect():
     def __init__(self, x1, y1, x2, y2, GV):
         self.draw_info=[x1,y1, x2-x1, y2-y1]
         self.elem=element(GV, [coord(x1,y1), coord(x2,y1), coord(x1,y2), coord(x2,y2)], coord(x1,y1))
+        GV.obj_list.append(self)
 
     def image(self, surface, color=(0,0,0)):
         pygame.draw.rect(surface, color, self.draw_info, 0)
@@ -83,8 +84,11 @@ class turret():
 
 
 class flag():
-    def __init__(self, x, y, size):
+    def __init__(self, x, y, size, GV):
         h=size/15
-        self.point_list=[[x+size-h, y], [x+size-h, y-size*3/2], [x, y-size*7/4+h/2], [x+size*-h, y-size*2+h], [x+size-h, y-size*2], [x+size, y-size*2], [x+size, y]]
+        self.point_list=[[x+size-h, y], [x+size-h, y-size*3/2], [x, y-size*7/4+h/2], [x+size-h, y-size*2+h], [x+size-h, y-size*2], [x+size, y-size*2], [x+size, y]]
+        self.elem=element(GV, [coord(x,y), coord(x+size, y), coord(x+size, y+2*size)], coord(x, y+2*size), coord(x,y))
+        GV.obj_list.append(self)
 
-        #self.elem=element(GV, , coord)
+    def image(self, main, color=(0,200,0)):
+        pygame.draw.polygon(main, color, self.point_list)
