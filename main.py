@@ -14,10 +14,12 @@ horloge=pygame.time.Clock()
 main.fill((255,255,255))
 player1=player.player(larg / 2, haut / 2)
 t = 0
-
+obj_list=[]
 run=True
 while run:
-##    obj.rect(0, 0, 20, 20, 1, 1, 1, 1).draw(main) 
+    rect1, obj_list=obj.rect(0, 0, 20, 20, 1, 1, 1, 1, obj_list)
+    rect.draw(main)
+    
     main.fill((255,255,255))
     player1.image(main)
     [head1, head2, head3, arm1, arm2, foot1, foot2] = player1.getCoord()
