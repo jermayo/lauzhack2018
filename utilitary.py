@@ -1,5 +1,7 @@
 import math
 
+def coord(x,y):
+    return {"x":x, "y":y}
 #returns cartesian coord from polar
 def cart_coord(radius, theta):
     return radius*math.cos(theta), radius*math.sin(theta)
