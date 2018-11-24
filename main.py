@@ -12,7 +12,7 @@ main=pygame.display.set_mode([larg,haut])
 horloge=pygame.time.Clock()
 
 main.fill((255,255,255))
-player1=player.player(main)
+player1=player.player(larg / 2, haut / 2)
 
 run=True
 while run:
