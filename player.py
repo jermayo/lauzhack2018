@@ -2,15 +2,8 @@ import pygame
 import math
 
 class player():
-    def __init__(self, coord):
-        self.coord=coord
-        self.angle_l_arm=-60
-        self.angle_r_arm=-120
-        self.angle_l_leg=-60
-        self.angle_r_leg=-120
-        size=10
+    def __init__(self, main):
+        return
 
-
-    def image(self):
-        r_arm=math.cos(self.angel_r_arm)*self.size
-        pygame.draw.polygon(main, [self.coord, [self.coord["x"]+self.size, self.cord+self.size, ])
+    def image(self, main):
+        pygame.draw.polygon(main, (0,0,0), [[100,100], [200,200], [200,100]], 2)

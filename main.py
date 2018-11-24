@@ -1,7 +1,7 @@
 import time
 import pygame
 
-
+import player
 
 pygame.init()
 
@@ -11,10 +11,13 @@ main=pygame.display.set_mode([larg,haut])
 
 horloge=pygame.time.Clock()
 
+main.fill((255,255,255))
+player1=player.player(main)
+
 run=True
 while run:
-
-
+    main.fill((255,255,255))
+    player1.image(main)
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             run=False
