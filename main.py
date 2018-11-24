@@ -25,7 +25,7 @@ turret1 = obj.turret(larg / 4 * 3, haut / 2)
 t = 0
 obj_list=[]
 
-maxMapSize=20
+maxMapSize=25
 size=larg/maxMapSize
 
 
