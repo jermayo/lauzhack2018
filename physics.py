@@ -11,7 +11,11 @@ class element():
         new_coord=self.center.move()
         for obstacle in obstacle_list:
             if not collision(obstacle.points_list, self.points_list):
+                for point in self.points_list:
+                    for coord in ["x","y"]:
+                        point[coord]=new_coord[coord]-self.center.coord[coord]
                 self.center.coord=new_coord
+
 
 class physical_point():
     def __init__(self, coord, speed, accel, tempo):

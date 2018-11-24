@@ -68,3 +68,8 @@ class turret():
         sommet = utilitary.coord(self.x, int(self.y - 3 / 2 * self.size))
 
         return [angle1, angle2, sommet]
+
+
+class flag():
+    def __init__(self, x, y, size):
+        self
