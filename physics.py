@@ -31,8 +31,6 @@ class physical_point():
             new_coord[i]=self.accel[i]*t*t/2+self.speed[i]*t+self.coord[i]
         return new_coord
 
-    def draw(self, object_list):
-        self.update(object_list)
 
 def collision(hb1, hb2):
     #[[min_x, max_x],[min_y,max_y]]

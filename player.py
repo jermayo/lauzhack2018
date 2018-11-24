@@ -15,9 +15,15 @@ class player():
         self.angle_l_knee=-math.pi / 16 * 9
         self.angle_r_knee=-math.pi / 16 * 7
         self.size=40
+        self.health = 3
+        self.energy = 1
 
 
-    def image(self, main):
+    def image(self, main, timeSpeed):
+
+        self.energy -= (-timeSpeed+1) / 100
+        if(self.energy < 0):
+            self.energy = 0
         #Body
         neckX = int(self.x + math.cos(self.angle_body) * 1.8 * self.size)
         neckY = int(self.y - math.sin(self.angle_body) * 1.8 * self.size)
