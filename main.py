@@ -26,7 +26,7 @@ turret1 = obj.turret(larg / 4 * 3, haut / 2, GV)
 t = 0
 obj_list=[]
 
-maxMapSize=20
+maxMapSize=25
 size=larg/maxMapSize
 
 
@@ -34,6 +34,8 @@ run=True
 while run:
     main.fill((255,255,255))
     maps.setmap1(GV, main, size, haut)
+
+    obj.flag(400, 400, 100, GV).image(main)
 
 
     #turret1.image(main, player1.x, player1.y, GV)
