@@ -1,26 +1,32 @@
 from utilitary import coord
 
+class element():
+    def __init__(self, object_list, points_list, coord, speed=coord(0,0), accel=coord(0,0), tempo=1):
+        self.center=physical_point(coord, speed, accel, tempo)
+        self.points_list=points_list
 
-class ground():
-    def __init__(self, coord):
-        self.coord=self.coord
+        object_list.append(self)
+        return object_list
 
+    def update(self, obstacle_list):
+        new_coord=self.center.move()
+        for obstacle in obstacle_list:
+            if not collision(obstacle.points_list, self.points_list):
+                self.center.coord=new_coord
 
 class physical_point():
-    def __init__(self, object_list, coord=coord(0,0), speed=coord(0,0), accel=coord(0,0), tempo=1):
+    def __init__(self, coord, speed, accel, tempo):
         self.coord=coord
         self.speed=speed
         self.accel=accel
         self.tempo=tempo
-        object_list.append(self)
 
-    def update(self, obstacle_list):
+    def move(self):
         t=self.tempo
         new_coord={}
         for i in ["x","y"]:
             new_coord[i]=self.accel[i]*t*t/2+self.speed[i]*t+self.coord[i]
-        for obstacle in obstacle_list:
-            if collision(obstacle.coord, )
+        return new_coord
 
     def draw(self, object_list):
         self.update(object_list)
