@@ -32,6 +32,11 @@ while run:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             run=False
+
+    touche=pygame.key.get_pressed()
+    if touche[pygame.K_ESCAPE]:
+        pygame.display.toggle_fullscreen()
+
     pygame.display.flip()
     horloge.tick(60)
     t += 0.2
