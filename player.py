@@ -5,8 +5,7 @@ import utilitary
 class player():
 
     def __init__(self, x, y):
-        self.x=x
-        self.y=y
+        self.coord = coord(x,y)
         self.angle_body=math.pi/2
         self.angle_l_arm=-2 * math.pi / 3
         self.angle_r_arm=-math.pi / 3

@@ -30,16 +30,16 @@ class bullet():
 class turret():
 
     def __init__(self, x, y, GV):
-        self.x = x
-        self.y = y
+        self.coord = coord(x,y)
         self.angle_cannon = 0
         self.size = 40
         self.dead = False
         self.fire = 20
-        self.elem = element(GV, [[x + self.size, y], [x + self.size, y - int(self.size * 3 / 2)], [x - self.size, y - int(self.size * 3 / 2)], [x - self.size, y]], [x, y])
+        self.elem = element(GV, [coord(x + self.size, y), coord(x + self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y)], coord(x, y))
+        GV.obj_list.append(self)
 
 
-    def image(self, main, playerX, playerY, GV):
+    def image(self, main, player, GV):
 
         pygame.draw.polygon(main, (0,0,0), [[self.x + self.size, self.y], [self.x - self.size, self.y], [self.x - int(self.size / 1.8), self.y - self.size], [self.x + int(self.size / 1.8), self.y - self.size]], 1)
         pygame.draw.arc(main, (0,0,0), [self.x - int(self.size / 2), self.y - self.size*3/2, self.size, self.size], 0, math.pi)
