@@ -1,6 +1,6 @@
 import time
 import pygame
-
+import objects as obj
 import player
 
 pygame.init()
@@ -17,6 +17,7 @@ t = 0
 
 run=True
 while run:
+##    obj.rect(0, 0, 20, 20, 1, 1, 1, 1).draw(main) 
     main.fill((255,255,255))
     player1.image(main)
     [head1, head2, head3, arm1, arm2, foot1, foot2] = player1.getCoord()
