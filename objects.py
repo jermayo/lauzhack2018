@@ -16,11 +16,8 @@ class rect():
 
 class bullet():
 
-    def __init__(self, x, y, angle):
-        self.x = x
-        self.y = y
-        self.angle = angle
-        self.speed = 5
+    def __init__(self, x, y, angle, GV):
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = utilitary.cart_coord(10, angle))
 
     def image(self, main):
         pygame.draw.circle(main, (0,0,0), [self.x, self.y], 1)
@@ -38,9 +35,10 @@ class turret():
         self.angle_cannon = 0
         self.size = 40
         self.dead = False
+        self.fire = 20
 
 
-    def image(self, main, playerX, playerY):
+    def image(self, main, playerX, playerY, GV):
 
         pygame.draw.polygon(main, (0,0,0), [[self.x + self.size, self.y], [self.x - self.size, self.y], [self.x - int(self.size / 1.8), self.y - self.size], [self.x + int(self.size / 1.8), self.y - self.size]], 1)
         pygame.draw.arc(main, (0,0,0), [self.x - int(self.size / 2), self.y - self.size*3/2, self.size, self.size], 0, math.pi)
@@ -54,12 +52,26 @@ class turret():
         if(playerY < self.y - self.size):
             baseX = int(self.x + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.y - self.size - math.sin(self.angle_cannon) * self.size / 2)
-            pygame.draw.line(main, (0,0,0), [baseX, baseY], [baseX + int(math.cos(self.angle_cannon) * self.size /2), baseY - int(math.sin(self.angle_cannon) * self.size / 2)], 5)
+            endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
+            endY = baseY - int(math.sin(self.angle_cannon) * self.size / 2)
+            pygame.draw.line(main, (0,0,0), [baseX, baseY], [endX, endY], 5)
         else:
             if(playerX < self.x):
-                pygame.draw.line(main, (0,0,0), [self.x - int(self.size / 2), self.y - self.size], [self.x - self.size, self.y - self.size], 5)
+                endX = self.x - self.size
+                endY = self.y - self.size
+                pygame.draw.line(main, (0,0,0), [self.x - int(self.size / 2), self.y - self.size], [endX, endY], 5)
             else:
-                pygame.draw.line(main, (0,0,0), [self.x + int(self.size / 2), self.y - self.size], [self.x + self.size, self.y - self.size], 5)
+                endX =self.x + self.size
+                endY = self.y - self.size
+                pygame.draw.line(main, (0,0,0), [self.x + int(self.size / 2), self.y - self.size], [endX, endY], 5)
+
+        self.fire -= GV.timeSpeed / 4
+        if(self.fire > 20):
+            self.fire = 20
+        elif(self.fire < 0):
+            bullet(endX, endY, self.angle_cannon, GV)
+            self.fire = 20
+
 
 
     def getCoord(self):
@@ -68,3 +80,8 @@ class turret():
         sommet = utilitary.coord(self.x, int(self.y - 3 / 2 * self.size))
 
         return [angle1, angle2, sommet]
+
+
+class flag():
+    def __init__(self, x, y, size):
+        self

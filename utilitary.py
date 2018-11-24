@@ -4,12 +4,13 @@ class GlobalVariable():
     def __init__(self):
         self.obj_list=[]
         self.main=0
+        self.timeSpeed = 1
 
 def coord(x,y):
     return {"x":x, "y":y}
 #returns cartesian coord from polar
 def cart_coord(radius, theta):
-    return radius*math.cos(theta), radius*math.sin(theta)
+    return coord(radius*math.cos(theta), radius*math.sin(theta))
 
 #returns polar coord from cartesian
 def polar_coord(x, y):

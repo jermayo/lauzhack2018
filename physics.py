@@ -11,7 +11,11 @@ class element():
         new_coord=self.center.move()
         for obstacle in obstacle_list:
             if not collision(obstacle.points_list, self.points_list):
+                for point in self.points_list:
+                    for coord in ["x","y"]:
+                        point[coord]=new_coord[coord]-self.center.coord[coord]
                 self.center.coord=new_coord
+
 
 class physical_point():
     def __init__(self, coord, speed, accel, tempo):
@@ -27,8 +31,6 @@ class physical_point():
             new_coord[i]=self.accel[i]*t*t/2+self.speed[i]*t+self.coord[i]
         return new_coord
 
-    def draw(self, object_list):
-        self.update(object_list)
 
 def collision(hb1, hb2):
     #[[min_x, max_x],[min_y,max_y]]
