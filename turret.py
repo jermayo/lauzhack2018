@@ -8,6 +8,7 @@ class turret():
         self.y = y
         self.angle_cannon = 0
         self.size = 40
+        self.dead = False
 
 
     def image(self, main, playerX, playerY):
