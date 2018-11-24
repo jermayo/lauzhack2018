@@ -84,4 +84,5 @@ class turret():
 
 class flag():
     def __init__(self, x, y, size):
-        self
+        self.point_list=[]
+        self.elem=element(GV, , coord)
