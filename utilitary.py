@@ -1,5 +1,10 @@
 import math
 
+class GlobalVariable():
+    def __init__(self):
+        self.obj_list=[]
+        self.main=0
+
 def coord(x,y):
     return {"x":x, "y":y}
 #returns cartesian coord from polar
