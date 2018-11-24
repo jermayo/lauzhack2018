@@ -22,6 +22,6 @@ while run:
         if event.type==pygame.QUIT:
             run=False
     pygame.display.flip()
-
+    horloge.tick(1000)
 
 pygame.quit()
