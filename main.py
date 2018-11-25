@@ -29,7 +29,7 @@ def key_action(keys, fullscreen, player1, time):
     else:
         player1.running=False
         player1.state(time)
-
+        player1.elem.center.speed["x"]=0
     if keys[pygame.K_w]:
         player1.elem.center.speed=utilitary.coord(0,-10)
 
