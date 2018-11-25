@@ -37,9 +37,10 @@ class mister():
         self.is_grounded, self.on_wall=self.elem.check_collision(GV.elem_list, old_coord, old_points_list)
 
 
-        self.energy -= (-GV.timeSpeed+1) / 100
+        self.energy -= (-GV.timeSpeed+1) / 50
         if(self.energy < 0):
             self.energy = 0
+            GV.timeSpeed = 1
         #Body
         neckX = int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size)
         neckY = int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size)
