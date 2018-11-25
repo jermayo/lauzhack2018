@@ -41,11 +41,15 @@ pygame.init()
 
 
 infoObject = pygame.display.Info()
-larg, haut=int(infoObject.current_w/2), int(infoObject.current_h/2)-120
+larg, haut=int(infoObject.current_w), int(infoObject.current_h)-120
 
 infoObject.current_w, infoObject.current_h
 main=pygame.display.set_mode([larg,haut],0,0)
 fullscreen=False
+
+maxMapSize=25
+size=larg/maxMapSize
+GV.size = size
 
 
 horloge=pygame.time.Clock()
@@ -58,9 +62,7 @@ turret1 = obj.turret(larg / 4 * 3, haut / 2, GV)
 t = 0
 obj_list=[]
 
-maxMapSize=25
-size=larg/maxMapSize
-GV.size = size
+
 
 
 run=True

@@ -14,7 +14,7 @@ class mister():
         self.angle_r_leg=-math.pi / 3
         self.angle_l_knee=-math.pi / 16 * 9
         self.angle_r_knee=-math.pi / 16 * 7
-        self.size=40
+        self.size=GV.size / 2.5
         self.health = 3
         self.energy = 1
         self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,9.81))

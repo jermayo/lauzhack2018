@@ -44,7 +44,7 @@ class turret():
 
     def __init__(self, x, y, GV):
         self.angle_cannon = 0
-        self.size = 40
+        self.size = GV.size / 2.5
         self.dead = False
         self.fire = 20
         self.elem = element(GV, [coord(x + self.size, y), coord(x + self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y)], coord(x, y))
