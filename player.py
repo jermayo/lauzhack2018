@@ -18,6 +18,7 @@ class mister():
         self.health = 3
         self.energy = 1
         self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,9.81))
+        self.isAlive = True
 
         GV.obj_list.append(self)
 
