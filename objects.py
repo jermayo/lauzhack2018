@@ -25,7 +25,7 @@ class spikes():
             self.point_list.append([x1+i*size+size/2, y-size])
             self.color=(200,0,0)
 
-        self.elem=element(GV, [coord(x1, y), coord(x1+number*size, y), coord(x1+number*size, y-size), coord(x1, y-size)], coord(x1,y))
+        self.elem=element(GV, [coord(x1, y), coord(x1+number*size, y), coord(x1+number*size, y-size*3/4), coord(x1, y-size*3/4)], coord(x1,y))
 
         self.point_list.append([x1+number*size, y])
         GV.obj_list.append(self)
@@ -35,7 +35,7 @@ class spikes():
 
 class clock():
     def __init__(self,x,y,size,GV):
-        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size))
+        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size), collide=False)
         GV.obj_list.append(self)
         self.size = size
 
