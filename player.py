@@ -17,7 +17,7 @@ class mister():
         self.size=40
         self.health = 3
         self.energy = 1
-        self.elem=physics.element(GV, None, util.coord(x,y))
+        self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,9.81))
 
         GV.obj_list.append(self)
 
@@ -99,7 +99,6 @@ class mister():
             self.angle_r_knee=-math.pi / 16 * 7
 
     def getCoord(self):
-        print(self)
         head1 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size) - self.size)
         head2 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size + self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))
         head3 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size - self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))

@@ -7,9 +7,9 @@ class element():
 
         GV.elem_list.append(self)
 
-    def update(self, obstacle_list):
+    def update(self, elem_list):
         new_coord=self.center.move()
-        for obstacle in obstacle_list:
+        for obstacle in elem_list:
             if not collision(obstacle.points_list, self.points_list):
                 for point in self.points_list:
                     for coord in ["x","y"]:
@@ -45,7 +45,6 @@ def collision(hb1, hb2):
 
     def point_inside(p, x, y):
         if p[0]>x[0] and p[0]<x[1] and p[1]>y[0] and p[1]<y[1]:
-            print(p,x,y)
             return True
 
         return False
@@ -55,7 +54,6 @@ def collision(hb1, hb2):
     hb1=get_hit_box(hb1)
     hb2=get_hit_box(hb2)
 
-    print(hb1, hb2)
     if len1==1 and len2==1:
         return False
     elif len1==1:
