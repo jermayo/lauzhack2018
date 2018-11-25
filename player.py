@@ -111,9 +111,9 @@ class mister():
         arm1 = util.coord(int(shouldersX + math.cos(self.angle_l_arm) * self.size * 1.3), int(shouldersY -  math.sin(self.angle_l_arm) * self.size * 1.3))
         arm2 = util.coord(int(shouldersX + math.cos(self.angle_r_arm) * self.size * 1.3), int(shouldersY -  math.sin(self.angle_r_arm) * self.size * 1.3))
         legLX = int(self.elem.center.coord["x"] + math.cos(self.angle_l_leg) * self.size)
-        legLY = int(self.elem.center.coord["y"] - math.sin(self.angle_l_leg) * self.size)
+        legLY = int(self.elem.center.coord["y"] + 1.8 * self.size)
         legRX = int(self.elem.center.coord["x"] + math.cos(self.angle_r_leg) * self.size)
-        legRY = int(self.elem.center.coord["y"] - math.sin(self.angle_r_leg) * self.size)
+        legRY = int(self.elem.center.coord["y"] + 1.8 * self.size)
         foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(legLY - math.sin(self.angle_l_knee) * self.size * 0.8))
         foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(legRY - math.sin(self.angle_r_knee) * self.size * 0.8))
 

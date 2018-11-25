@@ -21,13 +21,13 @@ def key_action(keys, fullscreen, player1, time):
         player1.running=True
         player1.state(time, side="RIGHT")
         player1.elem.center.speed=utilitary.coord(5,0)
-    if keys[pygame.K_a]:
+    elif keys[pygame.K_a]:
         player1.running=True
         player1.state(time, side="LEFT")
         player1.elem.center.speed=utilitary.coord(-5,0)
-    if not player1.running:
-        player1.state(time)
+    else:
         player1.running=False
+        player1.state(time)
 
 
     jump=False
@@ -61,6 +61,7 @@ obj_list=[]
 
 maxMapSize=25
 size=larg/maxMapSize
+GV.size = size
 
 
 run=True
