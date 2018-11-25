@@ -40,16 +40,28 @@ class clock():
         self.size = size
 
     def image(self,main, player=None, GV=None):
-        pygame.draw.circle(main, (0,0,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], int(self.size/2),5)
-        pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"],self.elem.center.coord["y"]-self.size/2*4/5],[self.elem.center.coord["x"],self.elem.center.coord["y"]],3)
-        pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"],self.elem.center.coord["y"]],[self.elem.center.coord["x"]+math.sin(math.pi/4)*self.size*3/10,self.elem.center.coord["y"]-math.sin(math.pi/4)*self.size*3/10],4)
+        pygame.draw.circle(main, (0,0,200), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], int(self.size/2),5)
+        pygame.draw.line(main, (0,0,200), [self.elem.center.coord["x"],self.elem.center.coord["y"]-self.size/2*4/5],[self.elem.center.coord["x"],self.elem.center.coord["y"]],3)
+        pygame.draw.line(main, (0,0,200), [self.elem.center.coord["x"],self.elem.center.coord["y"]],[self.elem.center.coord["x"]+math.sin(math.pi/4)*self.size*3/10,self.elem.center.coord["y"]-math.sin(math.pi/4)*self.size*3/10],4)
 
+class excla():
+    def __init__(self,x,y,GV):
+        self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size))
+        GV.obj_list.append(self)
+        self.size = GV.size
+        self.point_list=[(x+GV.size/3,y-GV.size*3/4),(x+GV.size*2/3,y-GV.size*3/4),(x+GV.size*3/4,y-2*GV.size),(x+GV.size/4,y-2*GV.size)]
+
+    def image(self,main, player=None, GV=None):
+        print(self.size)
+        pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])+int(self.size*3/5)], self.size,0)
+        pygame.draw.polygon(main, (200,200,0), self.point_list,3) 
+        
 class bullet():
 
     def __init__(self, x, y, angle, GV):
         self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)))
         GV.obj_list.append(self)
-
+    
     def image(self, main, player=None, GV=None):
         x = self.elem.center.coord["x"]
         y = self.elem.center.coord["y"]
@@ -97,7 +109,7 @@ class turret():
             else:
                 self.angle_cannon = 0
 
-        if(player.elem.center.coord["x"] < self.elem.center.coord["x"] - self.size):
+        if(player.elem.center.coord["y"] < self.elem.center.coord["y"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
             endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)

@@ -107,6 +107,7 @@ class mister():
             self.angle_r_knee=-math.pi / 16 * 7
 
     def getCoord(self):
+<<<<<<< HEAD
         head1 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size) - self.size)
         head2 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size + self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))
         head3 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size - self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))
@@ -122,3 +123,6 @@ class mister():
         foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.6))
 
         return [head1, head2, head3, arm1, arm2, foot1, foot2]
+=======
+        return [util.coord(self.elem.center.coord["x"] + 0.5 * self.size, self.elem.center.coord["y"]+ 1.6 * self.size), util.coord(self.elem.center.coord["x"] - 0.5 * self.size, self.elem.center.coord["y"]+ 1.6 * self.size), util.coord(self.elem.center.coord["x"] + 0.5 * self.size, self.elem.center.coord["y"]- 2.3 * self.size), util.coord(self.elem.center.coord["x"] - 0.5 * self.size, self.elem.center.coord["y"]- 2.3 * self.size)]
+>>>>>>> 182718c471f96d2ac25a1627630ba02f06815e8e
