@@ -27,7 +27,7 @@ class mister():
 
 
     def image(self, main, player=None, GV=None):
-
+        self.elem.update(GV.elem_list)
         self.energy -= (-GV.timeSpeed+1) / 100
         if(self.energy < 0):
             self.energy = 0

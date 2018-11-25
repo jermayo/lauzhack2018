@@ -71,7 +71,6 @@ while run:
     obj.flag(400, 400, 100, GV).image(main)
 
     for objet in GV.obj_list:
-        objet.elem.update(GV.elem_list)
         objet.image(main, player=player1, GV=GV)
 
 
@@ -84,5 +83,4 @@ while run:
     pygame.display.flip()
     horloge.tick(60)
     t += 0.2
-
 pygame.quit()
