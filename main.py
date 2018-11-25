@@ -39,11 +39,11 @@ def key_action(keys, fullscreen, player1, time):
 
     if keys[pygame.K_UP]:
         if GV.timeSpeed<=1:
-            GV.timeSpeed+=0.01
+            GV.timeSpeed+=0.08
 
     if keys[pygame.K_DOWN]:
         if GV.timeSpeed>=-1:
-            GV.timeSpeed-=0.01
+            GV.timeSpeed-=0.08
 
     return fullscreen
 
