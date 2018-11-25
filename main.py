@@ -71,8 +71,8 @@ while run:
 
     obj.flag(400, 400, 100, GV).image(main)
 
-#    for obj in GV.obj_list:
-#        obj.image()
+    for objet in GV.obj_list:
+        objet.image(main, player=player1, GV=GV)
 
 
     for event in pygame.event.get():
