@@ -28,8 +28,8 @@ class mister():
 
 
     def image(self, main, player=None, GV=None):
-        self.elem.points_list=self.getCoord()
-        self.elem.update(GV.elem_list)
+
+        self.elem.update(GV.elem_list, update_id=self)
 
         self.energy -= (-GV.timeSpeed+1) / 100
         if(self.energy < 0):
