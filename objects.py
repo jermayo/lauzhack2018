@@ -99,7 +99,7 @@ class turret():
         self.angle_cannon = 0
         self.size = GV.size / 2.5
         self.dead = False
-        self.fire = 20
+        self.fire = 5
         self.elem = element(GV, [coord(x + self.size, y), coord(x + self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y)], coord(x, y))
         GV.obj_list.append(self)
 
@@ -142,10 +142,10 @@ class turret():
 
         self.fire -= GV.timeSpeed
         if(self.fire > 20):
-            self.fire = 20
+            self.fire = 5
         elif(self.fire < 0):
             bullet(endX, endY, self.angle_cannon, GV)
-            self.fire = 20
+            self.fire = 5
 
         return False
 
