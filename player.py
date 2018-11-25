@@ -30,7 +30,7 @@ class mister():
     def image(self, main, player=None, GV=None):
         self.elem.points_list=self.getCoord()
         self.elem.update(GV.elem_list)
-        
+
         self.energy -= (-GV.timeSpeed+1) / 100
         if(self.energy < 0):
             self.energy = 0
@@ -57,8 +57,8 @@ class mister():
         return False
 
     def state(self, time, side=None):
-        if side=="LEFT":
-            self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
+        if side=="RIGHT":
+            #self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
             self.angle_l_leg = 3 / 16*math.pi * math.cos(time) - math.pi / 2
             self.angle_r_leg = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2
             self.angle_l_arm = 3 / 16*math.pi * math.cos(time) - math.pi / 2
@@ -75,8 +75,8 @@ class mister():
                     self.angle_r_knee = -13 * math.pi / 16
                 else:
                     self.angle_r_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time + math.pi - 14 * math.pi / 8))
-        elif side=="RIGHT":
-            self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
+        elif side=="LEFT":
+            #self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
             self.angle_l_leg = math.pi - (3 / 16*math.pi * math.cos(time) - math.pi / 2)
             self.angle_r_leg = math.pi - (3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2)
             self.angle_l_arm = math.pi - (3 / 16*math.pi * math.cos(time) - math.pi / 2)

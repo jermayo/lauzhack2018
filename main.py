@@ -19,10 +19,12 @@ def key_action(keys, fullscreen, player1, time):
 
     if keys[pygame.K_d]:
         player1.running=True
-        player1.state(time, side="LEFT")
+        player1.state(time, side="RIGHT")
+        player1.elem.center.speed=utilitary.coord(5,0)
     if keys[pygame.K_a]:
         player1.running=True
-        player1.state(time, side="RIGHT")
+        player1.state(time, side="LEFT")
+        player1.elem.center.speed=utilitary.coord(-5,0)
     if not player1.running:
         player1.state(time)
         player1.running=False
@@ -62,16 +64,15 @@ size=larg/maxMapSize
 
 
 run=True
+maps.setmap1(GV, main, size, haut)
 while run:
 
     main.fill((255,255,255))
+    #GV.obj_list=[]
     fullscreen=key_action(pygame.key.get_pressed(), fullscreen, player1, t)
-    maps.setmap1(GV, main, size, haut)
-
-    obj.flag(400, 400, 100, GV).image(main)
 
     for objet in GV.obj_list:
-        if(objet.image(main, player=player1, GV=GV)):
+        if objet.image(main, player=player1, GV=GV):
             GV.obj_list.remove(objet)
 
 
@@ -84,5 +85,6 @@ while run:
     pygame.display.flip()
     horloge.tick(60)
     t += 0.2
-    print(horloge.get_fps())
+
+    print(horloge.get_fps(), len(GV.obj_list))
 pygame.quit()
