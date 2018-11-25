@@ -41,17 +41,11 @@ def setmap2(GV,main,s,b, player):
     obj.rect(10*s, b-5*s, 12*s, b-11*s, GV).image(main)
     obj.rect(12*s, b-6*s, 19*s, b-11*s, GV).image(main)
 
-<<<<<<< HEAD
-    obj.excla(11*s,b-1*s,GV, "Use the up and down to control time").image(main, GV=GV, player=player)
-    obj.clock(9*s,b-1*s,s,GV).image(main)
-=======
     obj.excla(11*s,b-1*s,GV).image(main, GV=GV)
-    obj.clock(9*s,b-1*s,s,GV).image(main, player=player)
->>>>>>> ecfe3b93298aada695f1c61e3560d411e725d53e
+    obj.clock(9*s,b-1*s,s,GV).image(main)
     obj.turret(9*s,b-5*s,GV).image(main, player=player, GV=GV)
 
     obj.flag(23*s,b-5*s,s,GV).image(main, player=player, GV=GV)
-
 def setmaptr(GV,main,s,b, player,t):
 
 
