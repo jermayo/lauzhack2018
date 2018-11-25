@@ -19,15 +19,11 @@ class rect():
 class bullet():
 
     def __init__(self, x, y, angle, GV):
-        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(utilitary.cart_coord(10, angle)))
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = utilitary.cart_coord(10, angle))
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):
-        pygame.draw.circle(main, (0,0,0), [self.elem.center.coord["x"], self.elem.center.coord["y"]], 1)
-        self.elem.center.coord["x"] += int(math.cos(angle) * speed)
-        self.elem.center.coord["y"] += int(math.sin(angle) * speed)
-
-
+        pygame.draw.circle(main, (0,0,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], 1)
 
 
 class turret():

@@ -19,6 +19,8 @@ class mister():
         self.energy = 1
         self.elem=physics.element(GV, None, util.coord(x,y))
 
+        GV.obj_list.append(self)
+
         self.running=False
         self.jumping=False
 
@@ -51,7 +53,7 @@ class mister():
         pygame.draw.line(main, (0,0,0), [legRX, legRY], [int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(legRY - math.sin(self.angle_r_knee) * self.size * 0.8)])
 
     def state(self, time, side=None):
-        if side=="RIGHT":
+        if side=="LEFT":
             self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
             self.angle_l_leg = 3 / 16*math.pi * math.cos(time) - math.pi / 2
             self.angle_r_leg = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2
@@ -69,7 +71,7 @@ class mister():
                     self.angle_r_knee = -13 * math.pi / 16
                 else:
                     self.angle_r_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time + math.pi - 14 * math.pi / 8))
-        elif side=="LEFT":
+        elif side=="RIGHT":
             self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
             self.angle_l_leg = math.pi - (3 / 16*math.pi * math.cos(time) - math.pi / 2)
             self.angle_r_leg = math.pi - (3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 2)
