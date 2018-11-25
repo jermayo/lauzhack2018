@@ -17,7 +17,7 @@ class element():
             col_x,col_y=collision(obstacle.points_list, self.points_list)
             if col_x and col_y:
                 self.center.coord["x"]=old_coord["x"]
-                self.center.coord["y"]=old_coord["y"]-1
+                self.center.coord["y"]=old_coord["y"]
                 self.center.speed=coord(0,0)
                 self.center.accel["y"]=0
                 return
