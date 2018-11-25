@@ -60,27 +60,33 @@ main=pygame.display.set_mode([larg,haut],0,0)
 fullscreen=False
 
 maxMapSize=25
-size=larg/maxMapSize
-GV.size = size
+GV.size = larg/maxMapSize
 
 
 horloge=pygame.time.Clock()
 
 main.fill((255,255,255))
-player1=player.mister(larg/8, haut/2, GV)
-player1.elem.points_list=player1.getCoord()
+
 
 t = 0
-obj_list=[]
 
-
-
-
+player1=player.mister(larg/8, haut/2, GV)
+player1.elem.points_list=player1.getCoord()
+level_pass=False
+maps.setmap1(GV, main, GV.size, haut, player1)
 mainrun=True
-maps.setmap2(GV, main, size, haut, player1)
+while mainrun and GV.level_pass<2:
 
-while mainrun:
+    if GV.level_pass==1:
+        l=level_pass
+        GV=utilitary.GlobalVariable()
+        GV.level_pass=l
+        GV.size=larg/maxMapSize
 
+        player1=player.mister(larg/8, haut/2, GV)
+        player1.elem.points_list=player1.getCoord()
+
+        maps.setmap2(GV, main, GV.size, haut, player1)
     main.fill((255,255,255))
     #GV.obj_list=[]
     fullscreen=key_action(pygame.key.get_pressed(), fullscreen, player1, t)
@@ -88,7 +94,6 @@ while mainrun:
     for objet in GV.obj_list:
         if objet.image(main, player=player1, GV=GV):
             GV.obj_list.remove(objet)
-            GV.elem_list.remove(objet.elem)
 
 
 

@@ -7,6 +7,7 @@ class GlobalVariable():
         self.main=0
         self.timeSpeed = 1
         self.size = 0
+        self.level_pass=0
 
 def coord(x,y):
     return {"x":x, "y":y}

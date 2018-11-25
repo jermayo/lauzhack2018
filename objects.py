@@ -52,7 +52,7 @@ class excla():
         self.point_list=[(x+GV.size/3,y-GV.size*3/4),(x+GV.size*2/3,y-GV.size*3/4),(x+GV.size*3/4,y-2*GV.size),(x+GV.size/4,y-2*GV.size)]
 
     def image(self,main, player=None, GV=None):
-        pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"]+self.size*3/5)], int(self.size/5),3)
+        pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"]+GV.size*3/5)], int(GV.size/5),3)
         pygame.draw.polygon(main, (200,200,0), self.point_list,3)
 
 class bullet():
@@ -70,16 +70,10 @@ class bullet():
         y += self.elem.center.speed["y"] * GV.timeSpeed
         if(x < 0 or x > 1980 or y < 0 or y > 1080):
             return True
-        a,b = collision(player.elem.points_list, self.elem.points_list)
-        if(a and b):
-            player.health -= 1
-            if(player.health == 0):
-                player.isDead = True
-            return True
+        if(collision(player.elem.points_list, self.elem.points_list)):
+            player.isAlive = False
         self.elem.center.coord["x"] = x
-        self.elem.points_list[0]["x"]=x
         self.elem.center.coord["y"] = y
-        self.elem.points_list[0]["y"]=y
         return False
 
 
@@ -159,4 +153,7 @@ class flag():
 
     def image(self, main, player=None, GV=None):
         pygame.draw.polygon(main, self.color, self.point_list)
+        a,b =collision(self.elem.points_list, player.elem.points_list)
+        if a and b:
+            GV.level_pass+=1
         return False
