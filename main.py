@@ -39,7 +39,7 @@ def key_action(keys, fullscreen, player1, time):
     if keys[pygame.K_UP]:
         if GV.timeSpeed<=1:
             GV.timeSpeed+=0.1
-            
+
     if keys[pygame.K_DOWN]:
         if GV.timeSpeed>=-1:
             GV.timeSpeed-=0.1
@@ -88,6 +88,7 @@ while mainrun:
     for objet in GV.obj_list:
         if objet.image(main, player=player1, GV=GV):
             GV.obj_list.remove(objet)
+            GV.elem_list.remove(objet.elem)
 
 
 
