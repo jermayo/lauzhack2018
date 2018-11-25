@@ -58,16 +58,16 @@ main.fill((255,255,255))
 player1=player.mister(larg/2, haut/2, GV)
 player1.elem.points_list=player1.getCoord()
 
-turret1 = obj.turret(larg / 4 * 3, haut / 2, GV)
 t = 0
 obj_list=[]
 
 
 
 
-run=True
+mainrun=True
 maps.setmap1(GV, main, size, haut)
-while run:
+
+while mainrun:
 
     main.fill((255,255,255))
     #GV.obj_list=[]
@@ -81,7 +81,7 @@ while run:
 
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
-            run=False
+            mainrun=False
 
 
     pygame.display.flip()
