@@ -17,11 +17,37 @@ class rect():
         pygame.draw.rect(main, self.color, self.draw_info, 0)
         return False
 
+class spikes():
+    def __init__(self, x1, y, number, size, GV):
+        self.point_list=[]
+        for i in range (0,number,1):
+            self.point_list.append([x1+i*size, y])
+            self.point_list.append([x1+i*size+size/2, y-size])
+            self.color=(200,0,0)
+
+        self.elem=element(GV, [coord(x1, y), coord(x1+number*size, y), coord(x1+number*size, y-size), coord(x1, y-size)], coord(x1,y))
+
+        self.point_list.append([x1+number*size, y])
+        GV.obj_list.append(self)
+
+    def image(self, main, player=None, GV=None):
+        pygame.draw.polygon(main, self.color, self.point_list)
+
+class clock():
+    def __init__(self,x,y,size,GV):
+        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size))
+        GV.obj_list.append(self)
+        self.size = size
+
+    def image(self,main, player=None, GV=None):
+        pygame.draw.circle(main, (0,0,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], int(self.size/2),5)
+        pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"],self.elem.center.coord["y"]-self.size/2*4/5],[self.elem.center.coord["x"],self.elem.center.coord["y"]],3)
+        pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"],self.elem.center.coord["y"]],[self.elem.center.coord["x"]+math.sin(math.pi/4)*self.size*3/10,self.elem.center.coord["y"]-math.sin(math.pi/4)*self.size*3/10],4)
 
 class bullet():
 
     def __init__(self, x, y, angle, GV):
-        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = utilitary.cart_coord(10, angle))
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)))
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):
@@ -71,7 +97,7 @@ class turret():
             else:
                 self.angle_cannon = 0
 
-        if(player.elem.center.coord["x"] < self.elem.center.coord["y"] - self.size):
+        if(player.elem.center.coord["x"] < self.elem.center.coord["x"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
             endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
