@@ -19,14 +19,14 @@ def key_action(keys, fullscreen, player1, time):
 
     run=False
     if keys[pygame.K_d]:
-        player.running=True
-        player.state(time, side="LEFT")
+        player1.running=True
+        player1.state(time, side="LEFT")
     if keys[pygame.K_a]:
-        player.running=True
-        player.state(time, side="RIGHT")
+        player1.running=True
+        player1.state(time, side="RIGHT")
     if not run:
-        player.state(time)
-        player.running=False
+        player1.state(time)
+        player1.running=False
 
 
     jump=False

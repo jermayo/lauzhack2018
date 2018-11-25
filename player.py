@@ -19,8 +19,6 @@ class player():
         self.energy = 1
         self.elem=physics.element(GV, None, util.coord(x,y))
 
-        print("hello")
-
         self.running=False
         self.jumping=False
 
