@@ -79,15 +79,15 @@ next_level=0
 
 while mainrun and GV.level_pass<2:
 
-    if GV.level_pass==1:
+    if GV.level_pass==1 and next_level==0:
         main.fill((255,255,255))
         
-
-        
+    
+        next_level=1
     if next_level:
         l=level_pass
         GV=utilitary.GlobalVariable()
-        GV.level_pass=l
+        GV.level_pass=1
         GV.size=larg/maxMapSize
 
         player1=player.mister(larg/8, haut/2, GV)
