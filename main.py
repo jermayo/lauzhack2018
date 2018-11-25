@@ -33,6 +33,18 @@ def key_action(keys, fullscreen, player1, time):
     if keys[pygame.K_w] and player1.is_grounded and not player1.on_wall:
         player1.elem.center.speed["y"]=-17
 
+    if keys[pygame.K_RCTRL]:
+        GV.timeSpeed=1
+
+    if keys[pygame.K_UP]:
+        if GV.timeSpeed<=1:
+            GV.timeSpeed+=0.1
+            
+    if keys[pygame.K_DOWN]:
+        if GV.timeSpeed>=-1:
+            GV.timeSpeed-=0.1
+
+
 
     return fullscreen
 
