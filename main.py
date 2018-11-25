@@ -108,7 +108,7 @@ while mainrun:
         GV.level_pass=2
 
 
-    if GV.level_pass==3:
+    if GV.level_pass>=3:
         main.fill((255,255,255))
         myfont3=pygame.font.SysFont("monospace",100,bold=True)
         label1=myfont3.render("YOU WIN !",1,(0,0,0))
