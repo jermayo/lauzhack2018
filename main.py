@@ -80,9 +80,9 @@ while mainrun:
 
     if not player1.isAlive:
         main.fill((0,0,0))
-        myfont=pygame.font.SysFont("monospace",50,bold=True)
+        myfont=pygame.font.SysFont("monospace",80,bold=True)
         mytext = myfont.render("Game Over",1,(255,255,255))
-        main.blit(mytext, (larg / 2, haut / 2))
+        main.blit(mytext, (larg / 2.5, haut / 2.5))
         pygame.display.flip()
         time.sleep(1.2)
         GV=utilitary.GlobalVariable()
