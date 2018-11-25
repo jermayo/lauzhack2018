@@ -14,6 +14,30 @@ class rect():
     def image(self, surface, color=(0,0,0)):
         pygame.draw.rect(surface, color, self.draw_info, 0)
 
+class spikes():
+    def __init__(self, x1, y, number, size, GV):
+        self.point_list=[]
+        for i in range (0,number,1):
+            self.point_list.append([x1+i*size, y])
+            self.point_list.append([x1+i*size+size/2, y-size])
+            
+        self.elem=element(GV, [coord(x1, y), coord(x1+number*size, y), coord(x1+number*size, y-size), coord(x1, y-size)], coord(x1,y))
+
+        self.point_list.append([x1+number*size, y])
+        GV.obj_list.append(self)
+
+    def image(self, main, color=(200,0,0)):
+        pygame.draw.polygon(main, color, self.point_list)
+
+class clock():
+    def __init__(self,x,y,size,GV):
+        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size))
+        self.size = size
+
+    def image(self,main):
+        pygame.draw.circle(main, (0,0,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], int(self.size/2),5)
+        pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"],self.elem.center.coord["y"]-self.size/2*4/5],[self.elem.center.coord["x"],self.elem.center.coord["y"]],3)
+        pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"],self.elem.center.coord["y"]],[self.elem.center.coord["x"]+math.sin(math.pi/4)*self.size*3/10,self.elem.center.coord["y"]-math.sin(math.pi/4)*self.size*3/10],4)
 
 class bullet():
 
