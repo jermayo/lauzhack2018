@@ -17,10 +17,8 @@ def setmap1(GV,main,s,b):
     
     obj.flag(23*s,b-6*s,s,GV).image(main)
 
-    obj.spikes(9*s,b-1*s,3,s,GV).image(main)
+    obj.spikes(9*s,b-1*s,2,s,GV).image(main)
     obj.spikes(14*s,b-1*s,7,s,GV).image(main)
-
-    obj.clock(12*s,b-3*s,s,GV).image(main)
 
     obj.excla(4*s,b-1*s,GV).image(main)
 
@@ -42,5 +40,9 @@ def setmap2(GV,main,s,b):
     obj.rect(8*s, b-5*s, 12*s, b-4*s, GV).image(main)
     obj.rect(10*s, b-5*s, 12*s, b-11*s, GV).image(main)
     obj.rect(12*s, b-6*s, 19*s, b-11*s, GV).image(main)
+
+    obj.excla(11*s,b-1*s,GV).image(main)
+    obj.clock(9*s,b-1*s,s,GV).image(main)
+    obj.turret(9*s,b-5*s,GV).image(main)
 
     obj.flag(23*s,b-5*s,s,GV).image(main)
