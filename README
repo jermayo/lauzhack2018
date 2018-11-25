@@ -1,9 +1,10 @@
 Lauzhack 2018 Banane Bleu
 
+The goal of this project is to demonstrate various ways to interact with the user via the LED keyboard.
+We paired it with a proof of concept game working around time flow.
 
 
-
-
-
+Download the "BB without keybord" if you don't have a Logitech G910 keyboard
+If you have the keyboard take the source code in BB_Final_Keyboard
 
 Olin Bourquin, Timothy Loayza, Loic Cordey, Jérémy Mayoraz
