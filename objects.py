@@ -44,21 +44,21 @@ class turret():
 
         pygame.draw.polygon(main, (0,0,0), [[self.elem.center.coord["x"] + self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - int(self.size / 1.8), self.elem.center.coord["y"] - self.size], [self.elem.center.coord["x"] + int(self.size / 1.8), self.elem.center.coord["y"] - self.size]], 1)
         pygame.draw.arc(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size*3/2, self.size, self.size], 0, math.pi)
-        if(playerX == self.elem.center.coord["x"]):
+        if(player.elem.coord.centre["x"] == self.elem.center.coord["x"]):
             self.angle_cannon = math.pi / 2
-        elif(playerX < self.elem.center.coord["x"]):
-            self.angle_cannon = math.pi - math.atan((self.elem.center.coord["y"]-playerY) / (self.elem.center.coord["x"] - playerX))
+        elif(player.elem.coord.centre["x"] < self.elem.center.coord["x"]):
+            self.angle_cannon = math.pi - math.atan((self.elem.center.coord["y"]-player.elem.coord.centre["y"]) / (self.elem.center.coord["x"] - player.elem.coord.centre["x"]))
         else:
-            self.angle_cannon = math.atan((self.elem.center.coord["y"]-playerY) / (playerX - self.elem.center.coord["x"]))
+            self.angle_cannon = math.atan((self.elem.center.coord["y"]-player.elem.coord.centre["y"]) / (player.elem.coord.centre["x"] - self.elem.center.coord["x"]))
 
-        if(playerX < self.elem.center.coord["y"] - self.size):
+        if(player.elem.coord.centre["x"] < self.elem.center.coord["y"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
             endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
             endY = baseY - int(math.sin(self.angle_cannon) * self.size / 2)
             pygame.draw.line(main, (0,0,0), [baseX, baseY], [endX, endY], 5)
         else:
-            if(playerX < self.elem.center.coord["x"]):
+            if(player.elem.coord.centre["x"] < self.elem.center.coord["x"]):
                 endX = self.elem.center.coord["x"] - self.size
                 endY = self.elem.center.coord["y"] - self.size
                 pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
