@@ -34,10 +34,6 @@ class mister():
         self.elem.points_list=self.getCoord()
         self.elem.check_collision(GV.elem_list, old_coord)
 
-        l=[]
-        for i in self.elem.points_list:
-            l.append([i["x"],i["y"]])
-        pygame.draw.polygon(main, (255,0,0), l, 1)
 
         self.energy -= (-GV.timeSpeed+1) / 100
         if(self.energy < 0):
