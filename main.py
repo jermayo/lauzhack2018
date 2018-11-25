@@ -80,9 +80,9 @@ while mainrun:
 
     if not player1.isAlive:
         main.fill((0,0,0))
-        myfont=pygame.font.SysFont("monospace",80,bold=True)
+        myfont=pygame.font.SysFont("monospace",50,bold=True)
         mytext = myfont.render("Game Over",1,(255,255,255))
-        main.blit(mytext, (larg / 2.5, haut / 2.5))
+        main.blit(mytext, (larg / 2, haut / 2))
         pygame.display.flip()
         time.sleep(1.2)
         GV=utilitary.GlobalVariable()
@@ -102,7 +102,7 @@ while mainrun:
         GV=utilitary.GlobalVariable()
 
         GV.size=larg/maxMapSize
-        player1=player.mister(larg/8, haut/2, GV)
+        player1=player.mister(larg/50, haut/3, GV)
         player1.elem.points_list=player1.getCoord()
         maps.setmap2(GV, main, GV.size, haut, player1)
         GV.level_pass=2
@@ -131,7 +131,6 @@ while mainrun:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             mainrun=False
-
 
     pygame.display.flip()
     horloge.tick(60)

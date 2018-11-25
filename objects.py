@@ -51,15 +51,22 @@ class clock():
         pygame.draw.line(main, (0,0,200), [self.elem.center.coord["x"],self.elem.center.coord["y"]],[self.elem.center.coord["x"]+math.sin(math.pi/4)*self.size*3/10,self.elem.center.coord["y"]-math.sin(math.pi/4)*self.size*3/10],4)
 
 class excla():
-    def __init__(self,x,y,GV):
+    def __init__(self,x,y,GV, text):
         self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size), collide=False)
         GV.obj_list.append(self)
         self.size = GV.size
         self.point_list=[(x+GV.size/3,y-GV.size*3/4),(x+GV.size*2/3,y-GV.size*3/4),(x+GV.size*3/4,y-2*GV.size),(x+GV.size/4,y-2*GV.size)]
+        self.text=text
 
     def image(self,main, player=None, GV=None):
         pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"]+GV.size*3/5)], int(GV.size/5),3)
         pygame.draw.polygon(main, (200,200,0), self.point_list,3)
+        a,b=collision(player.elem.points_list, self.elem.points_list)
+        if a and b:
+            print("TEXXTT")
+            return True
+
+
 
 class bullet():
 
@@ -172,5 +179,4 @@ class flag():
         a,b =collision(self.elem.points_list, player.elem.points_list)
         if a and b:
             GV.level_pass+=1
-            print(GV.level_pass)
         return False
