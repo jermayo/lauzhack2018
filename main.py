@@ -84,4 +84,5 @@ while run:
     pygame.display.flip()
     horloge.tick(60)
     t += 0.2
+    print(horloge.get_fps())
 pygame.quit()

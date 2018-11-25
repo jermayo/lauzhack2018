@@ -9,12 +9,11 @@ class element():
 
     def update(self, elem_list):
         new_coord=self.center.move()
+
         for obstacle in elem_list:
-            if not collision(obstacle.points_list, self.points_list):
-                for point in self.points_list:
-                    for coord in ["x","y"]:
-                        point[coord]=new_coord[coord]-self.center.coord[coord]
-                self.center.coord=new_coord
+            if collision(obstacle.points_list, self.points_list):
+                return
+        self.center.coord=new_coord
 
 
 class physical_point():
@@ -46,7 +45,6 @@ def collision(hb1, hb2):
     def point_inside(p, x, y):
         if p[0]>x[0] and p[0]<x[1] and p[1]>y[0] and p[1]<y[1]:
             return True
-
         return False
 
     len1=len(hb1)
@@ -56,12 +54,12 @@ def collision(hb1, hb2):
 
     if len1==1 and len2==1:
         return False
+
     elif len1==1:
         return point_inside([hb1[0][0],hb1[1][0]], hb2[0], hb2[1])
     elif len2==1:
         return point_inside([hb2[0][0],hb2[1][0]], hb1[0], hb1[1])
 
-    flag=False
     for i in range(2):
         for j in range(2):
             if point_inside([hb1[0][i],hb1[1][j]], hb2[0], hb2[1]) or point_inside([hb2[0][i],hb2[1][j]], hb1[0], hb1[1]):
