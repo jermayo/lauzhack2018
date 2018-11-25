@@ -172,4 +172,5 @@ class flag():
         a,b =collision(self.elem.points_list, player.elem.points_list)
         if a and b:
             GV.level_pass+=1
+            print(GV.level_pass)
         return False

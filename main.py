@@ -39,11 +39,11 @@ def key_action(keys, fullscreen, player1, time):
 
     if keys[pygame.K_UP]:
         if GV.timeSpeed<=1:
-            GV.timeSpeed+=0.1
+            GV.timeSpeed+=0.01
 
     if keys[pygame.K_DOWN]:
         if GV.timeSpeed>=-1:
-            GV.timeSpeed-=0.1
+            GV.timeSpeed-=0.01
 
     return fullscreen
 
@@ -72,12 +72,11 @@ t = 0
 
 player1=player.mister(larg/8, haut/2, GV)
 player1.elem.points_list=player1.getCoord()
-level_pass=False
 maps.setmap1(GV, main, GV.size, haut, player1)
 mainrun=True
 next_level=0
 
-while mainrun and GV.level_pass<2:
+while mainrun:
 
     if not player1.isAlive:
         main.fill((0,0,0))
@@ -98,7 +97,9 @@ while mainrun and GV.level_pass<2:
     #    main.fill((255,255,255))
 
     if GV.level_pass==1:
-        l=level_pass
+        t=0
+        l=GV.level_pass
+        
         GV=utilitary.GlobalVariable()
         GV.level_pass=l
         GV.size=larg/maxMapSize
@@ -106,6 +107,14 @@ while mainrun and GV.level_pass<2:
         player1=player.mister(larg/8, haut/2, GV)
         player1.elem.points_list=player1.getCoord()
         maps.setmap2(GV, main, GV.size, haut, player1)
+
+
+    if GV.level_pass==2:
+        main.fill((255,255,255))
+        myfont3=pygame.font.SysFont("monospace",50,bold=True)
+        label1=myfont3.render("YOU WIN !",1,(0,0,0))
+        main.blit(label1,(larg/2-100,haut/2-60))
+        pygame.display.flip()
 
 
     main.fill((255,255,255))
