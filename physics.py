@@ -21,10 +21,15 @@ class element():
 
                 print(old_col_x, old_col_y)
                 self.center.accel["y"]=0
+<<<<<<< HEAD
                 self.center.speed=coord(0,0)
                 return True
         self.center.accel["y"]=1
         return False
+=======
+                return
+        self.center.accel["y"]=1
+>>>>>>> 51f5866a358194db62467549ef5e4ef460d8a257
 
 
 
