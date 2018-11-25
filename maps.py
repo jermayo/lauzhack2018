@@ -17,8 +17,8 @@ def setmap1(GV,main,s,b, player):
 
     obj.flag(23*s,b-6*s,s,GV).image(main, player=player, GV=GV)
 
-    obj.spikes(9*s,b-1*s,2,s,GV).image(main)
-    obj.spikes(14*s,b-1*s,7,s,GV).image(main)
+    obj.spikes(9*s,b-1*s,2,s,GV).image(main, player=player, GV=GV)
+    obj.spikes(14*s,b-1*s,7,s,GV).image(main,player=player, GV=GV)
 
     obj.excla(4*s,b-1*s,GV).image(main, GV=GV)
 

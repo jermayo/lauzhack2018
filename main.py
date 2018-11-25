@@ -44,8 +44,6 @@ def key_action(keys, fullscreen, player1, time):
         if GV.timeSpeed>=-1:
             GV.timeSpeed-=0.1
 
-
-
     return fullscreen
 
 GV=utilitary.GlobalVariable()
@@ -79,12 +77,12 @@ next_level=0
 
 while mainrun and GV.level_pass<2:
 
+    #if GV.level_pass==1:
+    #    main.fill((255,255,255))
+
+
+
     if GV.level_pass==1:
-        main.fill((255,255,255))
-
-
-
-    if next_level:
         l=level_pass
         GV=utilitary.GlobalVariable()
         GV.level_pass=l
@@ -92,7 +90,6 @@ while mainrun and GV.level_pass<2:
 
         player1=player.mister(larg/8, haut/2, GV)
         player1.elem.points_list=player1.getCoord()
-
         maps.setmap2(GV, main, GV.size, haut, player1)
     main.fill((255,255,255))
     #GV.obj_list=[]

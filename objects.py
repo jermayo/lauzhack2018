@@ -32,6 +32,12 @@ class spikes():
 
     def image(self, main, player=None, GV=None):
         pygame.draw.polygon(main, self.color, self.point_list)
+        a,b =collision(self.elem.points_list, player.elem.points_list)
+        if a and b:
+            player.isAlive = False
+        return False
+
+
 
 class clock():
     def __init__(self,x,y,size,GV):
