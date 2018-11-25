@@ -52,7 +52,7 @@ class clock():
 
 class excla():
     def __init__(self,x,y,GV):
-        self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size))
+        self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size), collide=False)
         GV.obj_list.append(self)
         self.size = GV.size
         self.point_list=[(x+GV.size/3,y-GV.size*3/4),(x+GV.size*2/3,y-GV.size*3/4),(x+GV.size*3/4,y-2*GV.size),(x+GV.size/4,y-2*GV.size)]
@@ -64,7 +64,7 @@ class excla():
 class bullet():
 
     def __init__(self, x, y, angle, GV):
-        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)))
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)), collide=False)
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):

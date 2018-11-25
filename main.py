@@ -5,6 +5,7 @@ import player
 import utilitary
 import maps
 import physics
+#import clavier_led
 
 def key_action(keys, fullscreen, player1, time):
 
@@ -47,6 +48,7 @@ def key_action(keys, fullscreen, player1, time):
     return fullscreen
 
 GV=utilitary.GlobalVariable()
+#Clavier_Led=clavier_led()
 pygame.init()
 
 
@@ -80,8 +82,6 @@ while mainrun and GV.level_pass<2:
     #if GV.level_pass==1:
     #    main.fill((255,255,255))
 
-
-
     if GV.level_pass==1:
         l=level_pass
         GV=utilitary.GlobalVariable()
@@ -91,7 +91,8 @@ while mainrun and GV.level_pass<2:
         player1=player.mister(larg/8, haut/2, GV)
         player1.elem.points_list=player1.getCoord()
         maps.setmap2(GV, main, GV.size, haut, player1)
-        
+
+
     main.fill((255,255,255))
     #GV.obj_list=[]
     fullscreen=key_action(pygame.key.get_pressed(), fullscreen, player1, t)
@@ -100,7 +101,7 @@ while mainrun and GV.level_pass<2:
         if objet.image(main, player=player1, GV=GV):
             GV.obj_list.remove(objet)
 
-
+    #Clavier_Led.health_bar(player1.health)
 
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
