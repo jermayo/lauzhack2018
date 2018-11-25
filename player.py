@@ -29,7 +29,15 @@ class mister():
 
     def image(self, main, player=None, GV=None):
 
-        self.elem.update(GV.elem_list, update_id=self)
+        old_coord=self.elem.center.coord
+        self.elem.center.coord=self.elem.update_coord()
+        self.elem.points_list=self.getCoord()
+        self.elem.check_collision(GV.elem_list, old_coord)
+
+        l=[]
+        for i in self.elem.points_list:
+            l.append([i["x"],i["y"]])
+        pygame.draw.polygon(main, (255,0,0), l, 1)
 
         self.energy -= (-GV.timeSpeed+1) / 100
         if(self.energy < 0):
