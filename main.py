@@ -84,6 +84,7 @@ while mainrun:
     if GV.level_pass==1:
         t=0
         l=GV.level_pass
+        
         GV=utilitary.GlobalVariable()
         GV.level_pass=l
         GV.size=larg/maxMapSize
