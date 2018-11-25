@@ -44,6 +44,7 @@ def setmap2(GV,main,s,b, player):
     obj.excla(11*s,b-1*s,GV, "TEXT HERE").image(main, GV=GV, player=player)
     obj.clock(9*s,b-1*s,s,GV).image(main, player=player)
     obj.turret(9*s,b-5*s,GV).image(main, player=player, GV=GV)
+    obj.turret(21*s,b-4*s,GV).image(main, player=player, GV=GV)
 
     obj.flag(23*s,b-5*s,s,GV).image(main, player=player, GV=GV)
 
@@ -90,5 +91,6 @@ def setmaptr(GV,main,s,b, player,t):
     obj.excla(11*s+(500-t)*25*s/500,b-1*s,GV,"").image(main, player=player, GV=GV)
     obj.clock(9*s+(500-t)*25*s/500,b-1*s,s,GV).image(main, player=player)
     obj.turret(9*s+(500-t)*25*s/500,b-5*s,GV).image(main, player=player, GV=GV)
+    obj.turret(21*s+(500-t)*25*s/500,b-4*s,GV).image(main, player=player, GV=GV)
 
     obj.flag(23*s+(500-t)*25*s/500,b-5*s,s,GV).image(main, player=player, GV=GV)

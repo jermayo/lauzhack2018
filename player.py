@@ -37,7 +37,7 @@ class mister():
         self.is_grounded, self.on_wall=self.elem.check_collision(GV.elem_list, old_coord, old_points_list)
 
 
-        self.energy -= (-GV.timeSpeed+1) / 50
+        self.energy -= (-GV.timeSpeed+1) / 300
         if(self.energy < 0):
             self.energy = 0
             GV.timeSpeed = 1
