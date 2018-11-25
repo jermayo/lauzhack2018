@@ -58,7 +58,7 @@ class excla():
 class bullet():
 
     def __init__(self, x, y, angle, GV):
-        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)))
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)), collide=False)
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):
