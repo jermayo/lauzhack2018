@@ -3,10 +3,10 @@ from utilitary import coord
 import pygame
 
 class element():
-    def __init__(self, GV, points_list, coord, speed=coord(0,0), accel=coord(0,0), tempo=1):
+    def __init__(self, GV, points_list, coord, speed=coord(0,0), accel=coord(0,0), tempo=1, collide=True):
         self.center=physical_point(coord, speed, accel, tempo)
         self.points_list=points_list
-
+        self.collide=collide
         GV.elem_list.append(self)
 
     def update_coord(self):
@@ -14,20 +14,21 @@ class element():
 
     def check_collision(self, elem_list, old_coord, old_points_list):
         for obstacle in elem_list:
-            col_x,col_y=collision(obstacle.points_list, self.points_list)
-            if col_x and col_y:
-                self.center.coord["x"]=old_coord["x"]
-                self.center.coord["y"]=old_coord["y"]
-                old_col_x,old_col_y=collision(obstacle.points_list, old_points_list)
+            if obstacle.collide:
+                col_x,col_y=collision(obstacle.points_list, self.points_list)
+                if col_x and col_y:
+                    self.center.coord["x"]=old_coord["x"]
+                    self.center.coord["y"]=old_coord["y"]
+                    old_col_x,old_col_y=collision(obstacle.points_list, old_points_list)
 
-                self.center.speed["x"]=0
-                if old_col_x:
-                    self.center.accel["y"]=0
-                    self.center.speed["y"]=0
-                    return True, False
-                else:
+                    self.center.speed["x"]=0
+                    if old_col_x:
+                        self.center.accel["y"]=0
+                        self.center.speed["y"]=0
+                        return True, False
+                    else:
 
-                    return True, True
+                        return True, True
         self.center.accel["y"]=1
         return False, False
 
