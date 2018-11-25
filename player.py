@@ -4,7 +4,7 @@ import utilitary as util
 import physics
 import objects as obj
 
-class player():
+class mister():
 
     def __init__(self, x, y, GV):
         self.angle_body=math.pi/2
@@ -24,9 +24,9 @@ class player():
 
 
 
-    def image(self, main, timeSpeed):
+    def image(self, main, player=None, GV=None):
 
-        self.energy -= (-timeSpeed+1) / 100
+        self.energy -= (-GV.timeSpeed+1) / 100
         if(self.energy < 0):
             self.energy = 0
         #Body

@@ -6,12 +6,13 @@ from physics import element
 from utilitary import coord
 
 class rect():
-    def __init__(self, x1, y1, x2, y2, GV):
+    def __init__(self, x1, y1, x2, y2, GV, color=(0,0,0)):
         self.draw_info=[x1,y1, x2-x1, y2-y1]
         self.elem=element(GV, [coord(x1,y1), coord(x2,y1), coord(x1,y2), coord(x2,y2)], coord(x1,y1))
         GV.obj_list.append(self)
+        self.color=color
 
-    def image(self, main, player, GV):
+    def image(self, main, player=None, GV=None):
         pygame.draw.rect(main, self.color, self.draw_info, 0)
 
 
@@ -21,7 +22,7 @@ class bullet():
         self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(utilitary.cart_coord(10, angle)))
         GV.obj_list.append(self)
 
-    def image(self, main, player, GV):
+    def image(self, main, player=None, GV=None):
         pygame.draw.circle(main, (0,0,0), [self.elem.center.coord["x"], self.elem.center.coord["y"]], 1)
         self.elem.center.coord["x"] += int(math.cos(angle) * speed)
         self.elem.center.coord["y"] += int(math.sin(angle) * speed)
@@ -40,7 +41,7 @@ class turret():
         GV.obj_list.append(self)
 
 
-    def image(self, main, player, GV):
+    def image(self, main, player=None, GV=None):
 
         pygame.draw.polygon(main, (0,0,0), [[self.elem.center.coord["x"] + self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - int(self.size / 1.8), self.elem.center.coord["y"] - self.size], [self.elem.center.coord["x"] + int(self.size / 1.8), self.elem.center.coord["y"] - self.size]], 1)
         pygame.draw.arc(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size*3/2, self.size, self.size], 0, math.pi)
@@ -92,5 +93,5 @@ class flag():
         self.elem=element(GV, [coord(x,y), coord(x+size, y), coord(x+size, y+2*size)], coord(x, y+2*size), coord(x,y))
         GV.obj_list.append(self)
 
-    def image(self, main, player, GV):
+    def image(self, main, player=None, GV=None):
         pygame.draw.polygon(main, self.color, self.point_list)

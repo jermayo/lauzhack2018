@@ -34,7 +34,7 @@ def key_action(keys, fullscreen, player1, time):
         jump=True
 
 
-    return fullscreen, player
+    return fullscreen
 
 GV=utilitary.GlobalVariable()
 pygame.init()
@@ -51,7 +51,7 @@ fullscreen=False
 horloge=pygame.time.Clock()
 
 main.fill((255,255,255))
-player1=player.player(larg/2, haut/2, GV)
+player1=player.mister(larg/2, haut/2, GV)
 player1.elem.points_list=player1.getCoord()
 
 turret1 = obj.turret(larg / 4 * 3, haut / 2, GV)
@@ -64,14 +64,15 @@ size=larg/maxMapSize
 
 run=True
 while run:
-    fullscreen, player1=key_action(pygame.key.get_pressed(), fullscreen, player1, t)
+
     main.fill((255,255,255))
+    fullscreen=key_action(pygame.key.get_pressed(), fullscreen, player1, t)
     maps.setmap1(GV, main, size, haut)
 
     obj.flag(400, 400, 100, GV).image(main)
 
-    for obj in GV.obj_list:
-        obj.image()
+#    for obj in GV.obj_list:
+#        obj.image()
 
 
     for event in pygame.event.get():
