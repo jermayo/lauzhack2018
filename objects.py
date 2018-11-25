@@ -3,6 +3,7 @@ import math
 import utilitary
 
 from physics import element
+from physics import collision
 from utilitary import coord
 
 class rect():
@@ -23,7 +24,14 @@ class bullet():
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):
-        pygame.draw.circle(main, (0,0,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], 1)
+        pygame.draw.circle(main, (0,0,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], 5)
+        self.update(player, GV)
+
+    def update(self, player, GV):
+        self.elem.center.coord["x"] += self.elem.center.speed["x"] * GV.timeSpeed
+        self.elem.center.coord["x"] += self.elem.center.speed["x"] * GV.timeSpeed
+        if(collision(player.elem.points_list, self.elem.points_list)):
+            player.isAlive = False
 
 
 class turret():
@@ -64,7 +72,7 @@ class turret():
                 endY = self.elem.center.coord["y"] - self.size
                 pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] + int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
 
-        self.fire -= GV.timeSpeed / 4
+        self.fire -= GV.timeSpeed
         if(self.fire > 20):
             self.fire = 20
         elif(self.fire < 0):
