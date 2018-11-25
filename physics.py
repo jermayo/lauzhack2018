@@ -12,6 +12,7 @@ class element():
 
         for obstacle in elem_list:
             if collision(obstacle.points_list, self.points_list):
+                print(new_coord)
                 return
         self.center.coord=new_coord
 
