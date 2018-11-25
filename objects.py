@@ -127,17 +127,17 @@ class turret():
         if(player.elem.center.coord["y"] < self.elem.center.coord["y"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
-            endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
-            endY = baseY - int(math.sin(self.angle_cannon) * self.size / 2)
+            endX = baseX + int(math.cos(self.angle_cannon) * 1.3 *self.size /2)
+            endY = baseY - int(math.sin(self.angle_cannon) * 1.3* self.size / 2)
             pygame.draw.line(main, (0,0,0), [baseX, baseY], [endX, endY], 5)
         else:
             if(player.elem.center.coord["x"] < self.elem.center.coord["x"]):
-                endX = self.elem.center.coord["x"] - self.size
-                endY = self.elem.center.coord["y"] - self.size
+                endX = self.elem.center.coord["x"] - 1.3*self.size
+                endY = self.elem.center.coord["y"] - 1.3*self.size
                 pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
             else:
-                endX =self.elem.center.coord["x"] + self.size
-                endY = self.elem.center.coord["y"] - self.size
+                endX =self.elem.center.coord["x"] + 1.3*self.size
+                endY = self.elem.center.coord["y"] - 1.3*self.size
                 pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] + int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
 
         self.fire -= GV.timeSpeed
