@@ -76,10 +76,20 @@ class bullet():
         y += self.elem.center.speed["y"] * GV.timeSpeed
         if(x < 0 or x > 1980 or y < 0 or y > 1080):
             return True
-        if(collision(player.elem.points_list, self.elem.points_list)):
-            player.isAlive = False
+        a,b=collision(player.elem.points_list, self.elem.points_list)
+        if(a and b):
+            player.health -= 1
+            if(player.health == 0):
+                player.isDead = True
+            return True
+        for i in GV.elem_list:
+            a,b = collision(i.points_list, self.elem.points_list)
+            if a and b:
+                return True
         self.elem.center.coord["x"] = x
+        self.elem.points_list[0]["x"] = x
         self.elem.center.coord["y"] = y
+        self.elem.points_list[0]["y"] = y
         return False
 
 
