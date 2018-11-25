@@ -46,7 +46,7 @@ class clock():
 
 class excla():
     def __init__(self,x,y,GV):
-        self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size))
+        self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size), collide=False)
         GV.obj_list.append(self)
         self.size = GV.size
         self.point_list=[(x+GV.size/3,y-GV.size*3/4),(x+GV.size*2/3,y-GV.size*3/4),(x+GV.size*3/4,y-2*GV.size),(x+GV.size/4,y-2*GV.size)]
@@ -76,6 +76,10 @@ class bullet():
             if(player.health == 0):
                 player.isDead = True
             return True
+        for elem in GV.elem_list:
+            a,b = collision(elem.points_list, self.elem.points_list)
+            if(a and b):
+                return True
         self.elem.center.coord["x"] = x
         self.elem.points_list[0]["x"]=x
         self.elem.center.coord["y"] = y
