@@ -58,7 +58,6 @@ main.fill((255,255,255))
 player1=player.mister(larg/2, haut/2, GV)
 player1.elem.points_list=player1.getCoord()
 
-turret1 = obj.turret(larg / 4 * 3, haut / 2, GV)
 t = 0
 obj_list=[]
 

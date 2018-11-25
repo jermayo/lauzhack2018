@@ -52,7 +52,7 @@ class excla():
         self.point_list=[(x+GV.size/3,y-GV.size*3/4),(x+GV.size*2/3,y-GV.size*3/4),(x+GV.size*3/4,y-2*GV.size),(x+GV.size/4,y-2*GV.size)]
 
     def image(self,main, player=None, GV=None):
-        pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"]+self.size*3/5)], int(self.size),0)
+        pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"]+self.size*3/5)], int(self.size/5),3)
         pygame.draw.polygon(main, (200,200,0), self.point_list,3)
 
 class bullet():
