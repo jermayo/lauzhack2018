@@ -13,10 +13,11 @@ class element():
     def check_collision(self, elem_list, c):
         flag=[0,0]
         for obstacle in elem_list:
-            col_x,col_y=collision(obstacle.points_list, self.points_list)
-            if col_x and col_y:
-                self.center.speed=coord(0,0)
-                return False
+            if obstacle!=self:
+                col_x,col_y=collision(obstacle.points_list, self.points_list)
+                if col_x and col_y:
+                    self.center.speed=coord(0,0)
+                    return False
         return self.center.coord[c]
 
 
@@ -47,7 +48,7 @@ def collision(hb1, hb2):
         return l
 
     def point_inside(p, x):
-        if int(p)>int(x[0]) and int(p)<int(x[1]):
+        if int(p)>=int(x[0]) and int(p)<=int(x[1]):
             return True
         return False
 
