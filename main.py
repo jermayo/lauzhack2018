@@ -18,11 +18,11 @@ def key_action(keys, fullscreen, player1, time):
             fullscreen=not fullscreen
 
     player1.running=False
-    if keys[pygame.K_d]:
+    if keys[pygame.K_d] and not player1.on_wall:
         player1.running=True
         player1.state(time, side="RIGHT")
         player1.elem.center.speed["x"]=6
-    elif keys[pygame.K_a]:
+    elif keys[pygame.K_a] and not player1.on_wall:
         player1.running=True
         player1.state(time, side="LEFT")
         player1.elem.center.speed["x"]=-6

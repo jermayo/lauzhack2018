@@ -20,6 +20,7 @@ class mister():
         self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,1))
         self.isAlive = True
         self.is_grounded=False
+        self.on_wall=False
         GV.obj_list.append(self)
 
         self.running=False
@@ -33,7 +34,7 @@ class mister():
         self.elem.center.coord=self.elem.update_coord()
         old_points_list=self.elem.points_list
         self.elem.points_list=self.getCoord()
-        self.is_grounded=self.elem.check_collision(GV.elem_list, old_coord, old_points_list)
+        self.is_grounded, self.on_wall=self.elem.check_collision(GV.elem_list, old_coord, old_points_list)
 
 
         self.energy -= (-GV.timeSpeed+1) / 100

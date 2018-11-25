@@ -22,9 +22,11 @@ class element():
                 if old_col_x:
                     self.center.accel["y"]=0
                 self.center.speed=coord(0,0)
-                return True
+                if not old_col_y:
+                    return True, False
+                return True, True
         self.center.accel["y"]=1
-        return False
+        return False, False
 
 
 
