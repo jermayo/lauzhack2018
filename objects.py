@@ -52,6 +52,7 @@ class clock():
         a,b = collision(player.elem.points_list, self.elem.points_list)
         if a and b:
             player.energy = 1
+            return True
 
 class excla():
     def __init__(self,x,y,GV, text):
