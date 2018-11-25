@@ -78,6 +78,16 @@ next_level=0
 
 while mainrun:
 
+    if not player1.isAlive:
+        main.fill((255,255,255))
+        GV=utilitary.GlobalVariable()
+        GV.level_pass=0
+        GV.size=larg/maxMapSize
+
+        player1=player.mister(larg/8, haut/2, GV)
+        player1.elem.points_list=player1.getCoord()
+        maps.setmap1(GV, main, GV.size, haut, player1)
+
     #if GV.level_pass==1:
     #    main.fill((255,255,255))
 
