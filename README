@@ -4,7 +4,7 @@ The goal of this project is to demonstrate various ways to interact with the use
 We paired it with a proof of concept game working around time flow.
 
 
-Download the "BB without keybord" if you don't have a Logitech G910 keyboard
-If you have the keyboard take the source code in BB_Final_Keyboard
+Download the "BB without keybord" if you don't have a Logitech G910 keyboard, source code is in branch "Game"
+If you have the keyboard take the source code from master branch
 
 Olin Bourquin, Timothy Loayza, Loic Cordey, Jérémy Mayoraz
