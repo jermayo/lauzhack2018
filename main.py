@@ -80,6 +80,7 @@ next_level=0
 while mainrun and GV.level_pass<2:
 
     if not player1.isAlive:
+        main.fill((255,255,255))
         GV=utilitary.GlobalVariable()
         GV.level_pass=0
         GV.size=larg/maxMapSize
