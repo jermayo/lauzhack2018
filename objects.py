@@ -35,7 +35,7 @@ class spikes():
 
 class clock():
     def __init__(self,x,y,size,GV):
-        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size), collide=False)
+        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size))
         GV.obj_list.append(self)
         self.size = size
 
@@ -71,9 +71,7 @@ class bullet():
         if(x < 0 or x > 1980 or y < 0 or y > 1080):
             return True
         if(collision(player.elem.points_list, self.elem.points_list)):
-            player.health -= 1
-            if(player.health == 0):
-                player.isAlive = False
+            player.isAlive = False
         self.elem.center.coord["x"] = x
         self.elem.center.coord["y"] = y
         return False
