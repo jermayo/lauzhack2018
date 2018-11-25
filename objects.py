@@ -71,7 +71,9 @@ class bullet():
         if(x < 0 or x > 1980 or y < 0 or y > 1080):
             return True
         if(collision(player.elem.points_list, self.elem.points_list)):
-            player.isAlive = False
+            player.health -= 1
+            if(player.health == 0):
+                player.isAlive = False
         self.elem.center.coord["x"] = x
         self.elem.center.coord["y"] = y
         return False

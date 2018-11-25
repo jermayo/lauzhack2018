@@ -30,6 +30,8 @@ class mister():
 
     def image(self, main, player=None, GV=None):
 
+        print(self.health)
+
         old_coord=self.elem.center.coord
         self.elem.center.coord=self.elem.update_coord()
         old_points_list=self.elem.points_list
