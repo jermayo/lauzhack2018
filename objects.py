@@ -6,7 +6,7 @@ from physics import element
 from utilitary import coord
 
 class rect():
-    def __init__(self, x1, y1, x2, y2, color=(0,0,0), GV):
+    def __init__(self, x1, y1, x2, y2, GV):
         self.draw_info=[x1,y1, x2-x1, y2-y1]
         self.elem=element(GV, [coord(x1,y1), coord(x2,y1), coord(x1,y2), coord(x2,y2)], coord(x1,y1))
         GV.obj_list.append(self)
@@ -36,9 +36,11 @@ class turret():
         self.size = 40
         self.dead = False
         self.fire = 20
+        self.elem = element(GV, [coord(x + self.size, y), coord(x + self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y)], coord(x, y))
+        GV.obj_list.append(self)
 
 
-    def image(self, main, playerX, playerY, timeSpeed, GV):
+    def image(self, main, player, GV):
 
         pygame.draw.polygon(main, (0,0,0), [[self.elem.center.coord["x"] + self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - int(self.size / 1.8), self.elem.center.coord["y"] - self.size], [self.elem.center.coord["x"] + int(self.size / 1.8), self.elem.center.coord["y"] - self.size]], 1)
         pygame.draw.arc(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size*3/2, self.size, self.size], 0, math.pi)
