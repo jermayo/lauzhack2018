@@ -47,7 +47,7 @@ class clock():
 class bullet():
 
     def __init__(self, x, y, angle, GV):
-        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = utilitary.cart_coord(10, angle))
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)))
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):
@@ -97,7 +97,7 @@ class turret():
             else:
                 self.angle_cannon = 0
 
-        if(player.elem.center.coord["x"] < self.elem.center.coord["y"] - self.size):
+        if(player.elem.center.coord["x"] < self.elem.center.coord["x"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
             endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
