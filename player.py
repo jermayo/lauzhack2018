@@ -107,18 +107,4 @@ class mister():
             self.angle_r_knee=-math.pi / 16 * 7
 
     def getCoord(self):
-        head1 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size) - self.size)
-        head2 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size + self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))
-        head3 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size - self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))
-        shouldersX = int(self.elem.center.coord["x"] + 3 / 2 *  math.cos(self.angle_body) * self.size)
-        shouldersY = int(self.elem.center.coord["y"] - 3 / 2 *  math.sin(self.angle_body) * self.size)
-        arm1 = util.coord(int(shouldersX + math.cos(self.angle_l_arm) * self.size * 1.3), int(shouldersY -  math.sin(self.angle_l_arm) * self.size * 1.3))
-        arm2 = util.coord(int(shouldersX + math.cos(self.angle_r_arm) * self.size * 1.3), int(shouldersY -  math.sin(self.angle_r_arm) * self.size * 1.3))
-        legLX = int(self.elem.center.coord["x"] + math.cos(self.angle_l_leg) * self.size)
-        legLY = int(self.elem.center.coord["y"] + 1.8 * self.size)
-        legRX = int(self.elem.center.coord["x"] + math.cos(self.angle_r_leg) * self.size)
-        legRY = int(self.elem.center.coord["y"] + 1.8 * self.size)
-        foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.3))
-        foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.3))
-
-        return [head1, head2, head3, arm1, arm2, foot1, foot2]
+        return [util.coord(self.elem.center.coord["x"] + 0.5 * self.size, self.elem.center.coord["y"]+ 1.6 * self.size), util.coord(self.elem.center.coord["x"] - 0.5 * self.size, self.elem.center.coord["y"]+ 1.6 * self.size), util.coord(self.elem.center.coord["x"] + 0.5 * self.size, self.elem.center.coord["y"]- 2.3 * self.size), util.coord(self.elem.center.coord["x"] - 0.5 * self.size, self.elem.center.coord["y"]- 2.3 * self.size)]

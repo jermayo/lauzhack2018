@@ -97,7 +97,7 @@ class turret():
             else:
                 self.angle_cannon = 0
 
-        if(player.elem.center.coord["x"] < self.elem.center.coord["x"] - self.size):
+        if(player.elem.center.coord["y"] < self.elem.center.coord["y"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
             endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
