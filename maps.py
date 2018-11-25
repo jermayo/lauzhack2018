@@ -22,6 +22,8 @@ def setmap1(GV,main,s,b):
 
     obj.clock(12*s,b-3*s,s,GV).image(main)
 
+    obj.excla(4*s,b-1*s,GV).image(main)
+
 
 def setmap2(GV,main,s,b):
     obj.rect(0, 0, 25*s, b-11*s, GV).image(main)
