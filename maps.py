@@ -9,8 +9,8 @@ def setmap1(GV,main,s,b, player):
     obj.rect(5*s, b, 7*s, b-2*s, GV).image(main)
     obj.rect(6*s, b, 9*s, b-3*s, GV).image(main)
     obj.rect(11*s, b, 14*s, b-3*s, GV).image(main)
-    obj.rect(15*s, b-3*s, 16*s, b-4*s, GV).image(main)
-    obj.rect(17*s, b-4*s, 19*s, b-5*s, GV).image(main)
+    obj.rect(15*s, b-4*s, 16*s, b-5*s, GV).image(main)
+    obj.rect(17*s, b-5*s, 19*s, b-6*s, GV).image(main)
     obj.rect(21*s, b, 25*s, b-6*s, GV).image(main)
     obj.rect(0, b-11*s, 25*s, 0, GV).image(main)
     obj.rect(0, 0, 1*s, b, GV).image(main)
@@ -20,7 +20,7 @@ def setmap1(GV,main,s,b, player):
     obj.spikes(9*s,b-1*s,2,s,GV).image(main, player=player, GV=GV)
     obj.spikes(14*s,b-1*s,7,s,GV).image(main,player=player, GV=GV)
 
-    obj.excla(4*s,b-1*s,GV, "Use WAD to move around").image(main, GV=GV, player=player)
+    obj.excla(4*s,b-1*s,GV, text="Use WAD to move around", text_coord=(4*s, b/2)).image(main, GV=GV, player=player)
 
 
 def setmap2(GV,main,s,b, player):
@@ -41,7 +41,7 @@ def setmap2(GV,main,s,b, player):
     obj.rect(10*s, b-5*s, 12*s, b-11*s, GV).image(main)
     obj.rect(12*s, b-6*s, 19*s, b-11*s, GV).image(main)
 
-    obj.excla(11*s,b-1*s,GV, "TEXT HERE").image(main, GV=GV, player=player)
+    obj.excla(11*s,b-1*s,GV, text="Use up and down to change time", text_coord=(0.1*s, b/4)).image(main, GV=GV, player=player)
     obj.clock(9*s,b-1*s,s,GV).image(main, player=player)
     obj.turret(9*s,b-5*s,GV).image(main, player=player, GV=GV)
     obj.turret(21*s,b-4*s,GV).image(main, player=player, GV=GV)
@@ -66,7 +66,7 @@ def setmaptr(GV,main,s,b, player,t):
     obj.spikes(9*s-t*25*s/500,b-1*s,2,s,GV).image(main, player=player, GV=GV)
     obj.spikes(14*s-t*25*s/500,b-1*s,7,s,GV).image(main,player=player, GV=GV)
 
-    obj.excla(4*s-t*25*s/500,b-1*s,GV, "Yo Pétole!").image(main, GV=GV, player=player)
+    obj.excla(4*s-t*25*s/500,b-1*s,GV).image(main, GV=GV, player=player)
 
 
 
