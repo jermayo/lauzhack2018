@@ -35,7 +35,7 @@ class spikes():
 
 class clock():
     def __init__(self,x,y,size,GV):
-        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size))
+        self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size), collide=False)
         GV.obj_list.append(self)
         self.size = size
 
