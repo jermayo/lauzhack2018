@@ -31,7 +31,7 @@ def key_action(keys, fullscreen, player1, time):
         player1.state(time)
 
     if keys[pygame.K_w]:
-        player1.elem.center.speed=utilitary.coord["y"]=-10
+        player1.elem.center.speed["y"]=-10
 
 
     return fullscreen

@@ -9,16 +9,20 @@ class element():
 
         GV.elem_list.append(self)
 
+    def update_coord(self):
+        return self.center.move()
 
-    def check_collision(self, elem_list, c):
-        flag=[0,0]
+    def check_collision(self, elem_list, old_coord):
         for obstacle in elem_list:
-            if obstacle!=self:
-                col_x,col_y=collision(obstacle.points_list, self.points_list)
-                if col_x and col_y:
-                    self.center.speed=coord(0,0)
-                    return False
-        return self.center.coord[c]
+            col_x,col_y=collision(obstacle.points_list, self.points_list)
+            if col_x and col_y:
+                self.center.coord["x"]=old_coord["x"]
+                self.center.coord["y"]=old_coord["y"]-1
+                self.center.speed=coord(0,0)
+                self.center.accel["y"]=0
+                return
+        self.center.accel["y"]=9.81
+
 
 
 class physical_point():
@@ -28,10 +32,12 @@ class physical_point():
         self.accel=accel
         self.tempo=tempo
 
-    def move(self, c):
+    def move(self):
         t=self.tempo
-        new_coord=self.accel[c]*t*t/2+self.speed[c]*t+self.coord[c]
-        self.speed[c]+=self.accel[c]*t
+        new_coord={}
+        for i in ["x","y"]:
+            new_coord[i]=self.accel[i]*t*t/2+self.speed[i]*t+self.coord[i]
+            self.speed[i]+=self.accel[i]*t
         return new_coord
 
 
@@ -48,10 +54,12 @@ def collision(hb1, hb2):
         return l
 
     def point_inside(p, x):
-        if int(p)>=int(x[0]) and int(p)<=int(x[1]):
+        if int(p)>int(x[0]) and int(p)<int(x[1]):
             return True
         return False
 
+    if hb1==hb2:
+        return False, False
     len1=len(hb1)
     len2=len(hb2)
     hb1=get_hit_box(hb1)
