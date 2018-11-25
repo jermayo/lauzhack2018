@@ -39,7 +39,7 @@ def key_action(keys, fullscreen, player1, time):
     if keys[pygame.K_UP]:
         if GV.timeSpeed<=1:
             GV.timeSpeed+=0.1
-            
+
     if keys[pygame.K_DOWN]:
         if GV.timeSpeed>=-1:
             GV.timeSpeed-=0.1
@@ -67,7 +67,7 @@ GV.size = size
 horloge=pygame.time.Clock()
 
 main.fill((255,255,255))
-player1=player.mister(larg/2, haut/2, GV)
+player1=player.mister(larg/8, haut/2, GV)
 player1.elem.points_list=player1.getCoord()
 
 t = 0
@@ -77,7 +77,7 @@ obj_list=[]
 
 
 mainrun=True
-maps.setmap1(GV, main, size, haut)
+maps.setmap2(GV, main, size, haut, player1)
 
 while mainrun:
 

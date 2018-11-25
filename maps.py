@@ -4,7 +4,7 @@ import objects as obj
 from physics import element
 from utilitary import coord
 
-def setmap1(GV,main,s,b):
+def setmap1(GV,main,s,b, player):
     obj.rect(0, b, 25*s, b-1*s, GV).image(main)
     obj.rect(5*s, b, 7*s, b-2*s, GV).image(main)
     obj.rect(6*s, b, 9*s, b-3*s, GV).image(main)
@@ -14,7 +14,7 @@ def setmap1(GV,main,s,b):
     obj.rect(21*s, b, 25*s, b-6*s, GV).image(main)
     obj.rect(0, b-11*s, 25*s, 0, GV).image(main)
     obj.rect(0, 0, 1*s, b, GV).image(main)
-    
+
     obj.flag(23*s,b-6*s,s,GV).image(main)
 
     obj.spikes(9*s,b-1*s,2,s,GV).image(main)
@@ -23,7 +23,7 @@ def setmap1(GV,main,s,b):
     obj.excla(4*s,b-1*s,GV).image(main)
 
 
-def setmap2(GV,main,s,b):
+def setmap2(GV,main,s,b, player):
     obj.rect(0, 0, 25*s, b-11*s, GV).image(main)
     obj.rect(0, b, 25*s, b-1*s-1, GV).image(main)
 
@@ -36,13 +36,13 @@ def setmap2(GV,main,s,b):
     obj.rect(15*s, b-3*s-1, 25*s+1, b-2*s, GV).image(main)
     obj.rect(16*s, b-4*s-1, 25*s+1, b-3*s, GV).image(main)
     obj.rect(22*s, b-5*s-1, 25*s+1, b-4*s, GV).image(main)
-    
+
     obj.rect(8*s, b-5*s, 12*s, b-4*s, GV).image(main)
     obj.rect(10*s, b-5*s, 12*s, b-11*s, GV).image(main)
     obj.rect(12*s, b-6*s, 19*s, b-11*s, GV).image(main)
 
     obj.excla(11*s,b-1*s,GV).image(main)
     obj.clock(9*s,b-1*s,s,GV).image(main)
-    obj.turret(9*s,b-5*s,GV).image(main)
+    obj.turret(9*s,b-5*s,GV).image(main, player=player, GV=GV)
 
     obj.flag(23*s,b-5*s,s,GV).image(main)
