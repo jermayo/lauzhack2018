@@ -15,7 +15,7 @@ class mister():
         self.angle_l_knee=-math.pi / 16 * 9
         self.angle_r_knee=-math.pi / 16 * 7
         self.size=GV.size / 2.5
-        self.health = 3
+        self.health = 9
         self.energy = 1
         self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,1))
         self.isAlive = True
@@ -37,9 +37,10 @@ class mister():
         self.is_grounded, self.on_wall=self.elem.check_collision(GV.elem_list, old_coord, old_points_list)
 
 
-        self.energy -= (-GV.timeSpeed+1) / 100
+        self.energy -= (-GV.timeSpeed+1) / 50
         if(self.energy < 0):
             self.energy = 0
+            GV.timeSpeed = 1
         #Body
         neckX = int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size)
         neckY = int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size)
@@ -75,11 +76,11 @@ class mister():
                 self.angle_l_knee = -13 * math.pi / 16
             else:
                 self.angle_l_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time - 14 * math.pi / 8))
-                if((time + math.pi) % (2*math.pi) < math.pi):
+            if((time + math.pi) % (2*math.pi) < math.pi):
                     self.angle_r_knee = 3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 8 * 5
-                elif((time + math.pi) % (2*math.pi) < 14 * math.pi / 8):
+            elif((time + math.pi) % (2*math.pi) < 14 * math.pi / 8):
                     self.angle_r_knee = -13 * math.pi / 16
-                else:
+            else:
                     self.angle_r_knee = -13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time + math.pi - 14 * math.pi / 8))
         elif side=="LEFT":
             #self.elem.center.coord["y"] += math.cos(time*2)/30*self.size
@@ -93,11 +94,11 @@ class mister():
                 self.angle_l_knee = math.pi - (-13 * math.pi / 16)
             else:
                 self.angle_l_knee = math.pi - (-13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time - 14 * math.pi / 8)))
-                if((time + math.pi) % (2*math.pi) < math.pi):
+            if((time + math.pi) % (2*math.pi) < math.pi):
                     self.angle_r_knee = math.pi - (3 / 16*math.pi * math.cos(time + math.pi) - math.pi / 8 * 5)
-                elif((time + math.pi) % (2*math.pi) < 14 * math.pi / 8):
+            elif((time + math.pi) % (2*math.pi) < 14 * math.pi / 8):
                     self.angle_r_knee = math.pi - (-13 * math.pi / 16)
-                else:
+            else:
                     self.angle_r_knee = math.pi - (-13 * math.pi / 16 + 6 * math.pi / 16 * math.sin(2 * (time + math.pi - 14 * math.pi / 8)))
         else:
             self.angle_body=math.pi/2
