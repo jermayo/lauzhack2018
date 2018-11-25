@@ -1,5 +1,7 @@
 from utilitary import coord
 
+import pygame
+
 class element():
     def __init__(self, GV, points_list, coord, speed=coord(0,0), accel=coord(0,0), tempo=1):
         self.center=physical_point(coord, speed, accel, tempo)
@@ -7,14 +9,15 @@ class element():
 
         GV.elem_list.append(self)
 
-    def update(self, elem_list):
-        new_coord=self.center.move()
+    def update_coord(self):
+        return self.center.move()
 
+    def check_collision(self, elem_list, old_coord):
         for obstacle in elem_list:
             if collision(obstacle.points_list, self.points_list):
-                print(new_coord)
+                #print(new_coord, obstacle.points_list)
+                self.center.coord=old_coord
                 return
-        self.center.coord=new_coord
 
 
 class physical_point():
