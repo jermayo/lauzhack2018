@@ -36,6 +36,7 @@ class spikes():
 class clock():
     def __init__(self,x,y,size,GV):
         self.elem=element(GV, [coord(x+size/2,y-size)],coord(x+size/2,y-size))
+        GV.obj_list.append(self)
         self.size = size
 
     def image(self,main, player=None, GV=None):
