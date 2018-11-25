@@ -81,9 +81,9 @@ while mainrun and GV.level_pass<2:
 
     if GV.level_pass==1:
         main.fill((255,255,255))
+        
 
-
-
+        
     if next_level:
         l=level_pass
         GV=utilitary.GlobalVariable()
