@@ -71,7 +71,8 @@ while run:
     obj.flag(400, 400, 100, GV).image(main)
 
     for objet in GV.obj_list:
-        objet.image(main, player=player1, GV=GV)
+        if(objet.image(main, player=player1, GV=GV)):
+            GV.obj_list.remove(objet)
 
 
 

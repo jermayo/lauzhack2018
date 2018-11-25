@@ -15,6 +15,7 @@ class rect():
 
     def image(self, main, player=None, GV=None):
         pygame.draw.rect(main, self.color, self.draw_info, 0)
+        return False
 
 
 class bullet():
@@ -24,14 +25,19 @@ class bullet():
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):
-        pygame.draw.circle(main, (0,0,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], 5)
-        self.update(player, GV)
+        x = self.elem.center.coord["x"]
+        y = self.elem.center.coord["y"]
+        pygame.draw.circle(main, (0,0,0), [int(x), int(y)], 5)
 
-    def update(self, player, GV):
-        self.elem.center.coord["x"] += self.elem.center.speed["x"] * GV.timeSpeed
-        self.elem.center.coord["x"] += self.elem.center.speed["x"] * GV.timeSpeed
+        x += self.elem.center.speed["x"] * GV.timeSpeed
+        y += self.elem.center.speed["y"] * GV.timeSpeed
+        if(x < 0 or x > 1980 or y < 0 or y > 1080):
+            return True
         if(collision(player.elem.points_list, self.elem.points_list)):
             player.isAlive = False
+        self.elem.center.coord["x"] = x
+        self.elem.center.coord["y"] = y
+        return False
 
 
 class turret():
@@ -79,6 +85,8 @@ class turret():
             bullet(endX, endY, self.angle_cannon, GV)
             self.fire = 20
 
+        return False
+
 
 
     def getCoord(self):
@@ -99,3 +107,4 @@ class flag():
 
     def image(self, main, player=None, GV=None):
         pygame.draw.polygon(main, self.color, self.point_list)
+        return False

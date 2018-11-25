@@ -52,6 +52,7 @@ class mister():
         pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"], self.elem.center.coord["y"]], [legRX, legRY])
         pygame.draw.line(main, (0,0,0), [legLX, legLY], [int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(legLY - math.sin(self.angle_l_knee) * self.size * 0.8)])
         pygame.draw.line(main, (0,0,0), [legRX, legRY], [int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(legRY - math.sin(self.angle_r_knee) * self.size * 0.8)])
+        return False
 
     def state(self, time, side=None):
         if side=="LEFT":
