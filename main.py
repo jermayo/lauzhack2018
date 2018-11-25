@@ -76,6 +76,8 @@ maps.setmap1(GV, main, GV.size, haut, player1)
 mainrun=True
 tim=0
 
+gage = player.mana(19 / 20 * larg, haut / 7, GV.size)
+
 while mainrun:
 
     if not player1.isAlive:
@@ -126,6 +128,7 @@ while mainrun:
 
 
     main.fill((255,255,255))
+    gage.image(main , player1)
     #GV.obj_list=[]
     fullscreen=key_action(pygame.key.get_pressed(), fullscreen, player1, t)
 

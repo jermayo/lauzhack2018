@@ -111,3 +111,15 @@ class mister():
 
     def getCoord(self):
         return [util.coord(self.elem.center.coord["x"] + 0.5 * self.size, self.elem.center.coord["y"]+ 1.6 * self.size), util.coord(self.elem.center.coord["x"] - 0.5 * self.size, self.elem.center.coord["y"]+ 1.6 * self.size), util.coord(self.elem.center.coord["x"] + 0.5 * self.size, self.elem.center.coord["y"]- 2.3 * self.size), util.coord(self.elem.center.coord["x"] - 0.5 * self.size, self.elem.center.coord["y"]- 2.3 * self.size)]
+
+class mana():
+
+    def __init__(self, x, y, size):
+        self.x = x
+        self.y = y
+        self.size = int(size / 2)
+
+    def image(self, main, player):
+        pygame.draw.line(main, (0,0,0), [self.x,self.y], [int(self.x + self.size * math.cos(1/2)), int(self.y - math.sin(1/2) * self.size)])
+        pygame.draw.line(main, (0,0,0), [self.x,self.y], [int(self.x + self.size * math.cos(-1/2)), int(self.y - math.sin(-1/2) * self.size)])
+        pygame.draw.line(main, (0,0,0), [self.x,self.y], [int(self.x + self.size * math.cos(player.energy-1/2)), int(self.y - math.sin(player.energy-1/2) * self.size)])
