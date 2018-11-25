@@ -78,7 +78,7 @@ class bullet():
             return True
         a,b=collision(player.elem.points_list, self.elem.points_list)
         if(a and b):
-            player.health -= 1
+            player.health -= 2
             if(player.health <= 0):
                 player.isAlive = False
             return True
@@ -99,7 +99,7 @@ class turret():
         self.angle_cannon = 0
         self.size = GV.size / 2.5
         self.dead = False
-        self.fire = 20
+        self.fire = 5
         self.elem = element(GV, [coord(x + self.size, y), coord(x + self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y)], coord(x, y))
         GV.obj_list.append(self)
 
@@ -127,25 +127,25 @@ class turret():
         if(player.elem.center.coord["y"] < self.elem.center.coord["y"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
             baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
-            endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
-            endY = baseY - int(math.sin(self.angle_cannon) * self.size / 2)
+            endX = baseX + int(math.cos(self.angle_cannon) * 1.3 *self.size /2)
+            endY = baseY - int(math.sin(self.angle_cannon) * 1.3* self.size / 2)
             pygame.draw.line(main, (0,0,0), [baseX, baseY], [endX, endY], 5)
         else:
             if(player.elem.center.coord["x"] < self.elem.center.coord["x"]):
-                endX = self.elem.center.coord["x"] - self.size
-                endY = self.elem.center.coord["y"] - self.size
+                endX = self.elem.center.coord["x"] - 1.3*self.size
+                endY = self.elem.center.coord["y"] - 1.3*self.size
                 pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
             else:
-                endX =self.elem.center.coord["x"] + self.size
-                endY = self.elem.center.coord["y"] - self.size
+                endX =self.elem.center.coord["x"] + 1.3*self.size
+                endY = self.elem.center.coord["y"] - 1.3*self.size
                 pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] + int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
 
         self.fire -= GV.timeSpeed
         if(self.fire > 20):
-            self.fire = 20
+            self.fire = 5
         elif(self.fire < 0):
             bullet(endX, endY, self.angle_cannon, GV)
-            self.fire = 20
+            self.fire = 5
 
         return False
 

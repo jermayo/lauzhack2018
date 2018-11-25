@@ -79,7 +79,12 @@ next_level=0
 while mainrun:
 
     if not player1.isAlive:
-        main.fill((255,255,255))
+        main.fill((0,0,0))
+        myfont=pygame.font.SysFont("monospace",80,bold=True)
+        mytext = myfont.render("Game Over",1,(255,255,255))
+        main.blit(mytext, (larg / 2.5, haut / 2.5))
+        pygame.display.flip()
+        time.sleep(1.2)
         GV=utilitary.GlobalVariable()
         GV.level_pass=0
         GV.size=larg/maxMapSize
@@ -93,23 +98,24 @@ while mainrun:
 
     if GV.level_pass==1:
         t=0
-        l=GV.level_pass
-        
-        GV=utilitary.GlobalVariable()
-        GV.level_pass=l
-        GV.size=larg/maxMapSize
 
-        player1=player.mister(larg/8, haut/2, GV)
+        GV=utilitary.GlobalVariable()
+
+        GV.size=larg/maxMapSize
+        player1=player.mister(larg/12, haut/3, GV)
         player1.elem.points_list=player1.getCoord()
         maps.setmap2(GV, main, GV.size, haut, player1)
+        GV.level_pass=2
 
 
-    if GV.level_pass==2:
+    if GV.level_pass>=3:
         main.fill((255,255,255))
-        myfont3=pygame.font.SysFont("monospace",50,bold=True)
+        myfont3=pygame.font.SysFont("monospace",100,bold=True)
         label1=myfont3.render("YOU WIN !",1,(0,0,0))
-        main.blit(label1,(larg/2-100,haut/2-60))
+        main.blit(label1,(larg/2-200,haut/2-120))
         pygame.display.flip()
+        time.sleep(3)
+        break
 
 
     main.fill((255,255,255))
