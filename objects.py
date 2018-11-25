@@ -79,8 +79,8 @@ class bullet():
         a,b=collision(player.elem.points_list, self.elem.points_list)
         if(a and b):
             player.health -= 1
-            if(player.health == 0):
-                player.isDead = True
+            if(player.health <= 0):
+                player.isAlive = False
             return True
         for i in GV.elem_list:
             a,b = collision(i.points_list, self.elem.points_list)
