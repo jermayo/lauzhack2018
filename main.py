@@ -17,6 +17,7 @@ def key_action(keys, fullscreen, player1, time):
             pygame.display.set_mode([larg,haut])
             fullscreen=not fullscreen
 
+    player1.running=False
     if keys[pygame.K_d]:
         player1.running=True
         player1.state(time, side="RIGHT")
@@ -29,10 +30,8 @@ def key_action(keys, fullscreen, player1, time):
         player1.running=False
         player1.state(time)
 
-
-    jump=False
     if keys[pygame.K_w]:
-        jump=True
+        player1.elem.center.speed=utilitary.coord(0,-10)
 
 
     return fullscreen
@@ -42,7 +41,7 @@ pygame.init()
 
 
 infoObject = pygame.display.Info()
-larg, haut=infoObject.current_w, infoObject.current_h-120
+larg, haut=int(infoObject.current_w/2), int(infoObject.current_h/2)-120
 
 infoObject.current_w, infoObject.current_h
 main=pygame.display.set_mode([larg,haut],0,0)
@@ -86,6 +85,4 @@ while run:
     pygame.display.flip()
     horloge.tick(60)
     t += 0.2
-
-    print(horloge.get_fps(), len(GV.obj_list))
 pygame.quit()
