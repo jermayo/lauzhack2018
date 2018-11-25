@@ -77,6 +77,7 @@ mainrun=True
 next_level=0
 
 while mainrun:
+    print(player1.energy , " et " , GV.timeSpeed)
 
     if not player1.isAlive:
         main.fill((0,0,0))

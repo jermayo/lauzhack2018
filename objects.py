@@ -49,6 +49,9 @@ class clock():
         pygame.draw.circle(main, (0,0,200), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])], int(self.size/2),5)
         pygame.draw.line(main, (0,0,200), [self.elem.center.coord["x"],self.elem.center.coord["y"]-self.size/2*4/5],[self.elem.center.coord["x"],self.elem.center.coord["y"]],3)
         pygame.draw.line(main, (0,0,200), [self.elem.center.coord["x"],self.elem.center.coord["y"]],[self.elem.center.coord["x"]+math.sin(math.pi/4)*self.size*3/10,self.elem.center.coord["y"]-math.sin(math.pi/4)*self.size*3/10],4)
+        a,b = collision(player.elem.points_list, self.elem.points_list)
+        if a and b:
+            player.energy = 1
 
 class excla():
     def __init__(self,x,y,GV):
