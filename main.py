@@ -66,7 +66,7 @@ obj_list=[]
 
 
 run=True
-maps.setmap2(GV, main, size, haut)
+maps.setmap1(GV, main, size, haut)
 while run:
 
     main.fill((255,255,255))
