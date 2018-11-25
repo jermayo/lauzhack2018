@@ -102,11 +102,7 @@ while mainrun:
         GV=utilitary.GlobalVariable()
 
         GV.size=larg/maxMapSize
-<<<<<<< HEAD
-        player1=player.mister(larg/50, haut/3, GV)
-=======
         player1=player.mister(larg/12, haut/3, GV)
->>>>>>> b002c1313a1c0008955c8f6d3ccc0667ebcc3af7
         player1.elem.points_list=player1.getCoord()
         maps.setmap2(GV, main, GV.size, haut, player1)
         GV.level_pass=2
