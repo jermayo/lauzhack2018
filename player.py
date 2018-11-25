@@ -19,7 +19,7 @@ class mister():
         self.energy = 1
         self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,1))
         self.isAlive = True
-
+        self.is_grounded=False
         GV.obj_list.append(self)
 
         self.running=False
@@ -29,10 +29,10 @@ class mister():
 
     def image(self, main, player=None, GV=None):
 
-        old_coord=self.elem.center.coord
+        old_coord, old_col_x, old_col_y=self.elem.center.coord
         self.elem.center.coord=self.elem.update_coord()
         self.elem.points_list=self.getCoord()
-        self.elem.check_collision(GV.elem_list, old_coord)
+        self.is_grounded=self.elem.check_collision(GV.elem_list, old_coord, old_col_x, old_col_y)
 
 
         self.energy -= (-GV.timeSpeed+1) / 100
@@ -118,7 +118,7 @@ class mister():
         legLY = int(self.elem.center.coord["y"] + 1.8 * self.size)
         legRX = int(self.elem.center.coord["x"] + math.cos(self.angle_r_leg) * self.size)
         legRY = int(self.elem.center.coord["y"] + 1.8 * self.size)
-        foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.3))
-        foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.3))
+        foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.6))
+        foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.6))
 
         return [head1, head2, head3, arm1, arm2, foot1, foot2]

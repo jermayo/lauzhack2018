@@ -10,18 +10,21 @@ class element():
         GV.elem_list.append(self)
 
     def update_coord(self):
-        return self.center.move()
+        return self.center.move(), collision(obstacle.points_list, self.points_list)
 
-    def check_collision(self, elem_list, old_coord):
+    def check_collision(self, elem_list, old_coord, old_col_x, old_col_y):
         for obstacle in elem_list:
             col_x,col_y=collision(obstacle.points_list, self.points_list)
             if col_x and col_y:
                 self.center.coord["x"]=old_coord["x"]
                 self.center.coord["y"]=old_coord["y"]
-                self.center.speed=coord(0,0)
+
+                print(old_col_x, old_col_y)
                 self.center.accel["y"]=0
-                return
-        self.center.accel["y"]=9.81
+                self.center.speed=coord(0,0)
+                return True
+        self.center.accel["y"]=1
+        return False
 
 
 
@@ -79,8 +82,6 @@ def collision(hb1, hb2):
             x=True
         if point_inside(hb1[1][i], hb2[1]) or point_inside(hb2[1][i], hb1[1]):
             y=True
-    if x and y:
-        print(hb1, hb2)
     return x,y
 
 g=9.81

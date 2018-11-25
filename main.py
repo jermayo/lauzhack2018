@@ -21,17 +21,17 @@ def key_action(keys, fullscreen, player1, time):
     if keys[pygame.K_d]:
         player1.running=True
         player1.state(time, side="RIGHT")
-        player1.elem.center.speed=utilitary.coord(5,0)
+        player1.elem.center.speed["x"]=6
     elif keys[pygame.K_a]:
         player1.running=True
         player1.state(time, side="LEFT")
-        player1.elem.center.speed=utilitary.coord(-5,0)
+        player1.elem.center.speed["x"]=-6
     else:
         player1.running=False
         player1.state(time)
 
-    if keys[pygame.K_w]:
-        player1.elem.center.speed["y"]=-10
+    if keys[pygame.K_w] and player1.is_grounded:
+        player1.elem.center.speed["y"]=-17
 
 
     return fullscreen
