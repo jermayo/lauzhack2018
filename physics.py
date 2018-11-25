@@ -19,12 +19,15 @@ class element():
                 self.center.coord["x"]=old_coord["x"]
                 self.center.coord["y"]=old_coord["y"]
                 old_col_x,old_col_y=collision(obstacle.points_list, old_points_list)
+
+                self.center.speed["x"]=0
                 if old_col_x:
                     self.center.accel["y"]=0
-                self.center.speed=coord(0,0)
-                if not old_col_y:
+                    self.center.speed["y"]=0
                     return True, False
-                return True, True
+                else:
+
+                    return True, True
         self.center.accel["y"]=1
         return False, False
 
