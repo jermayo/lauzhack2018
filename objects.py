@@ -31,7 +31,6 @@ class bullet():
 class turret():
 
     def __init__(self, x, y, GV):
-        self.coord = coord(x,y)
         self.angle_cannon = 0
         self.size = 40
         self.dead = False
