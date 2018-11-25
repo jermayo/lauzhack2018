@@ -56,11 +56,20 @@ class turret():
         pygame.draw.polygon(main, (0,0,0), [[self.elem.center.coord["x"] + self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - int(self.size / 1.8), self.elem.center.coord["y"] - self.size], [self.elem.center.coord["x"] + int(self.size / 1.8), self.elem.center.coord["y"] - self.size]], 1)
         pygame.draw.arc(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size*3/2, self.size, self.size], 0, math.pi)
         if(player.elem.center.coord["x"] == self.elem.center.coord["x"]):
-            self.angle_cannon = math.pi / 2
+            if(player.elem.center.coord["y"] < self.elem.center.coord["y"]):
+                self.angle_cannon = math.pi / 2
+            else:
+                self.angle_cannon = -math.pi / 2
         elif(player.elem.center.coord["x"] < self.elem.center.coord["x"]):
-            self.angle_cannon = math.pi - math.atan((self.elem.center.coord["y"]-player.elem.center.coord["y"]) / (self.elem.center.coord["x"] - player.elem.center.coord["x"]))
+            if(player.elem.center.coord["y"] < self.elem.center.coord["y"]):
+                self.angle_cannon = math.pi - math.atan((self.elem.center.coord["y"]-player.elem.center.coord["y"]) / (self.elem.center.coord["x"] - player.elem.center.coord["x"]))
+            else:
+                self.angle_cannon = math.pi
         else:
-            self.angle_cannon = math.atan((self.elem.center.coord["y"]-player.elem.center.coord["y"]) / (player.elem.center.coord["x"] - self.elem.center.coord["x"]))
+            if(player.elem.center.coord["y"] < self.elem.center.coord["y"]):
+                self.angle_cannon = math.atan((self.elem.center.coord["y"]-player.elem.center.coord["y"]) / (player.elem.center.coord["x"] - self.elem.center.coord["x"]))
+            else:
+                self.angle_cannon = 0
 
         if(player.elem.center.coord["x"] < self.elem.center.coord["y"] - self.size):
             baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
