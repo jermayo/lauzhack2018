@@ -22,13 +22,13 @@ def key_action(keys, fullscreen, player1, time):
         player1.running=True
         player1.state(time, side="RIGHT")
         player1.elem.center.speed=utilitary.coord(5,0)
-    if keys[pygame.K_a]:
+    elif keys[pygame.K_a]:
         player1.running=True
         player1.state(time, side="LEFT")
         player1.elem.center.speed=utilitary.coord(-5,0)
-    if not player1.running:
-        player1.state(time)
+    else:
         player1.running=False
+        player1.state(time)
 
     if keys[pygame.K_w]:
         player1.elem.center.speed=utilitary.coord(0,-10)
@@ -41,11 +41,15 @@ pygame.init()
 
 
 infoObject = pygame.display.Info()
-larg, haut=int(infoObject.current_w/2), int(infoObject.current_h/2)-120
+larg, haut=int(infoObject.current_w), int(infoObject.current_h)-120
 
 infoObject.current_w, infoObject.current_h
 main=pygame.display.set_mode([larg,haut],0,0)
 fullscreen=False
+
+maxMapSize=25
+size=larg/maxMapSize
+GV.size = size
 
 
 horloge=pygame.time.Clock()
@@ -58,8 +62,7 @@ turret1 = obj.turret(larg / 4 * 3, haut / 2, GV)
 t = 0
 obj_list=[]
 
-maxMapSize=25
-size=larg/maxMapSize
+
 
 
 run=True
