@@ -17,7 +17,7 @@ class mister():
         self.size=GV.size / 2.5
         self.health = 3
         self.energy = 1
-        self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,9.81))
+        self.elem=physics.element(GV, None, util.coord(x,y), accel=util.coord(0,1))
         self.isAlive = True
         self.isGrounded = False
 
@@ -131,7 +131,7 @@ class mister():
         legLY = int(self.elem.center.coord["y"] + 1.8 * self.size)
         legRX = int(self.elem.center.coord["x"] + math.cos(self.angle_r_leg) * self.size)
         legRY = int(self.elem.center.coord["y"] + 1.8 * self.size)
-        foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(legLY - math.sin(self.angle_l_knee) * self.size * 0.8))
-        foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(legRY - math.sin(self.angle_r_knee) * self.size * 0.8))
+        foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.3))
+        foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + self.size * 1.3))
 
         return [head1, head2, head3, arm1, arm2, foot1, foot2]
