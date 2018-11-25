@@ -3,16 +3,19 @@ import math
 import utilitary
 
 from physics import element
+from physics import collision
 from utilitary import coord
 
 class rect():
-    def __init__(self, x1, y1, x2, y2, GV):
+    def __init__(self, x1, y1, x2, y2, GV, color=(0,0,0)):
         self.draw_info=[x1,y1, x2-x1, y2-y1]
         self.elem=element(GV, [coord(x1,y1), coord(x2,y1), coord(x1,y2), coord(x2,y2)], coord(x1,y1))
         GV.obj_list.append(self)
+        self.color=color
 
-    def image(self, surface, color=(0,0,0)):
-        pygame.draw.rect(surface, color, self.draw_info, 0)
+    def image(self, main, player=None, GV=None):
+        pygame.draw.rect(main, self.color, self.draw_info, 0)
+        return False
 
 class spikes():
     def __init__(self, x1, y, number, size, GV):
@@ -42,68 +45,87 @@ class clock():
 class bullet():
 
     def __init__(self, x, y, angle, GV):
-        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(utilitary.cart_coord(10, angle)))
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = utilitary.cart_coord(10, angle))
+        GV.obj_list.append(self)
 
-    def image(self, main):
-        pygame.draw.circle(main, (0,0,0), [self.x, self.y], 1)
-        self.x += int(math.cos(angle) * speed)
-        self.y += int(math.sin(angle) * speed)
+    def image(self, main, player=None, GV=None):
+        x = self.elem.center.coord["x"]
+        y = self.elem.center.coord["y"]
+        pygame.draw.circle(main, (0,0,0), [int(x), int(y)], 5)
 
-
+        x += self.elem.center.speed["x"] * GV.timeSpeed
+        y += self.elem.center.speed["y"] * GV.timeSpeed
+        if(x < 0 or x > 1980 or y < 0 or y > 1080):
+            return True
+        if(collision(player.elem.points_list, self.elem.points_list)):
+            player.isAlive = False
+        self.elem.center.coord["x"] = x
+        self.elem.center.coord["y"] = y
+        return False
 
 
 class turret():
 
     def __init__(self, x, y, GV):
-        self.coord = coord(x,y)
         self.angle_cannon = 0
-        self.size = 40
+        self.size = GV.size / 2.5
         self.dead = False
         self.fire = 20
         self.elem = element(GV, [coord(x + self.size, y), coord(x + self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y - int(self.size * 3 / 2)), coord(x - self.size, y)], coord(x, y))
         GV.obj_list.append(self)
 
 
-    def image(self, main, player, GV):
+    def image(self, main, player=None, GV=None):
 
-        pygame.draw.polygon(main, (0,0,0), [[self.x + self.size, self.y], [self.x - self.size, self.y], [self.x - int(self.size / 1.8), self.y - self.size], [self.x + int(self.size / 1.8), self.y - self.size]], 1)
-        pygame.draw.arc(main, (0,0,0), [self.x - int(self.size / 2), self.y - self.size*3/2, self.size, self.size], 0, math.pi)
-        if(playerX == self.x):
-            self.angle_cannon = math.pi / 2
-        elif(playerX < self.x):
-            self.angle_cannon = math.pi - math.atan((self.y-playerY) / (self.x - playerX))
+        pygame.draw.polygon(main, (0,0,0), [[self.elem.center.coord["x"] + self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - self.size, self.elem.center.coord["y"]], [self.elem.center.coord["x"] - int(self.size / 1.8), self.elem.center.coord["y"] - self.size], [self.elem.center.coord["x"] + int(self.size / 1.8), self.elem.center.coord["y"] - self.size]], 1)
+        pygame.draw.arc(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size*3/2, self.size, self.size], 0, math.pi)
+        if(player.elem.center.coord["x"] == self.elem.center.coord["x"]):
+            if(player.elem.center.coord["y"] < self.elem.center.coord["y"]):
+                self.angle_cannon = math.pi / 2
+            else:
+                self.angle_cannon = -math.pi / 2
+        elif(player.elem.center.coord["x"] < self.elem.center.coord["x"]):
+            if(player.elem.center.coord["y"] < self.elem.center.coord["y"]):
+                self.angle_cannon = math.pi - math.atan((self.elem.center.coord["y"]-player.elem.center.coord["y"]) / (self.elem.center.coord["x"] - player.elem.center.coord["x"]))
+            else:
+                self.angle_cannon = math.pi
         else:
-            self.angle_cannon = math.atan((self.y-playerY) / (playerX - self.x))
+            if(player.elem.center.coord["y"] < self.elem.center.coord["y"]):
+                self.angle_cannon = math.atan((self.elem.center.coord["y"]-player.elem.center.coord["y"]) / (player.elem.center.coord["x"] - self.elem.center.coord["x"]))
+            else:
+                self.angle_cannon = 0
 
-        if(playerY < self.y - self.size):
-            baseX = int(self.x + math.cos(self.angle_cannon) * self.size / 2)
-            baseY = int(self.y - self.size - math.sin(self.angle_cannon) * self.size / 2)
+        if(player.elem.center.coord["x"] < self.elem.center.coord["y"] - self.size):
+            baseX = int(self.elem.center.coord["x"] + math.cos(self.angle_cannon) * self.size / 2)
+            baseY = int(self.elem.center.coord["y"] - self.size - math.sin(self.angle_cannon) * self.size / 2)
             endX = baseX + int(math.cos(self.angle_cannon) * self.size /2)
             endY = baseY - int(math.sin(self.angle_cannon) * self.size / 2)
             pygame.draw.line(main, (0,0,0), [baseX, baseY], [endX, endY], 5)
         else:
-            if(playerX < self.x):
-                endX = self.x - self.size
-                endY = self.y - self.size
-                pygame.draw.line(main, (0,0,0), [self.x - int(self.size / 2), self.y - self.size], [endX, endY], 5)
+            if(player.elem.center.coord["x"] < self.elem.center.coord["x"]):
+                endX = self.elem.center.coord["x"] - self.size
+                endY = self.elem.center.coord["y"] - self.size
+                pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] - int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
             else:
-                endX =self.x + self.size
-                endY = self.y - self.size
-                pygame.draw.line(main, (0,0,0), [self.x + int(self.size / 2), self.y - self.size], [endX, endY], 5)
+                endX =self.elem.center.coord["x"] + self.size
+                endY = self.elem.center.coord["y"] - self.size
+                pygame.draw.line(main, (0,0,0), [self.elem.center.coord["x"] + int(self.size / 2), self.elem.center.coord["y"] - self.size], [endX, endY], 5)
 
-        self.fire -= timeSpeed / 4
+        self.fire -= GV.timeSpeed
         if(self.fire > 20):
             self.fire = 20
         elif(self.fire < 0):
             bullet(endX, endY, self.angle_cannon, GV)
             self.fire = 20
 
+        return False
+
 
 
     def getCoord(self):
-        angle1 = utilitary.coord(self.x + self.size, self.y)
-        angle2 = utilitary.coord(self.x - self.size, self.y)
-        sommet = utilitary.coord(self.x, int(self.y - 3 / 2 * self.size))
+        angle1 = utilitary.coord(self.elem.center.coord["x"] + self.size, self.elem.center.coord["y"])
+        angle2 = utilitary.coord(self.elem.center.coord["x"] - self.size, self.elem.center.coord["y"])
+        sommet = utilitary.coord(self.elem.center.coord["x"], int(self.elem.center.coord["y"] - 3 / 2 * self.size))
 
         return [angle1, angle2, sommet]
 
@@ -111,9 +133,11 @@ class turret():
 class flag():
     def __init__(self, x, y, size, GV):
         h=size/15
+        self.color = color=(0,200,0)
         self.point_list=[[x+size-h, y], [x+size-h, y-size*3/2], [x, y-size*7/4+h/2], [x+size-h, y-size*2+h], [x+size-h, y-size*2], [x+size, y-size*2], [x+size, y]]
         self.elem=element(GV, [coord(x,y), coord(x+size, y), coord(x+size, y+2*size)], coord(x, y+2*size), coord(x,y))
         GV.obj_list.append(self)
 
-    def image(self, main, color=(0,200,0)):
-        pygame.draw.polygon(main, color, self.point_list)
+    def image(self, main, player=None, GV=None):
+        pygame.draw.polygon(main, self.color, self.point_list)
+        return False
