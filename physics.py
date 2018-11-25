@@ -21,7 +21,7 @@ class element():
                 self.center.speed=coord(0,0)
                 self.center.accel["y"]=0
                 return
-        self.center.accel["y"]=9.81
+        self.center.accel["y"]=1
 
 
 

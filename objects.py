@@ -53,15 +53,15 @@ class excla():
 
     def image(self,main, player=None, GV=None):
         print(self.size)
-        pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"])+int(self.size*3/5)], self.size,0)
-        pygame.draw.polygon(main, (200,200,0), self.point_list,3) 
-        
+        pygame.draw.circle(main, (200,200,0), [int(self.elem.center.coord["x"]), int(self.elem.center.coord["y"]+self.size*3/5)], int(self.size),0)
+        pygame.draw.polygon(main, (200,200,0), self.point_list,3)
+
 class bullet():
 
     def __init__(self, x, y, angle, GV):
         self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)))
         GV.obj_list.append(self)
-    
+
     def image(self, main, player=None, GV=None):
         x = self.elem.center.coord["x"]
         y = self.elem.center.coord["y"]
