@@ -78,7 +78,7 @@ class bullet():
             return True
         a,b=collision(player.elem.points_list, self.elem.points_list)
         if(a and b):
-            player.health -= 1
+            player.health -= 2
             if(player.health <= 0):
                 player.isAlive = False
             return True
