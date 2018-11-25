@@ -17,14 +17,13 @@ def key_action(keys, fullscreen, player1, time):
             pygame.display.set_mode([larg,haut])
             fullscreen=not fullscreen
 
-    run=False
     if keys[pygame.K_d]:
         player1.running=True
         player1.state(time, side="LEFT")
     if keys[pygame.K_a]:
         player1.running=True
         player1.state(time, side="RIGHT")
-    if not run:
+    if not player1.running:
         player1.state(time)
         player1.running=False
 
