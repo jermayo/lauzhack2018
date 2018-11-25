@@ -29,10 +29,16 @@ class mister():
 
     def image(self, main, player=None, GV=None):
 
-        old_coord=self.elem.center.coord
-        self.elem.center.coord=self.elem.update_coord()
-        self.elem.points_list=self.getCoord()
-        self.elem.check_collision(GV.elem_list, old_coord)
+        move={}
+        for c in ["x","y"]:
+            old_coord=self.elem.center.coord[c]
+            self.elem.center.coord[c]=self.elem.center.move(c)
+            self.elem.points_list=self.getCoord()
+            move[c]=self.elem.check_collision(GV.elem_list, c)
+            self.elem.center.coord[c]=old_coord
+        for c in ["x","y"]:
+            if move[c]!=False:
+                self.elem.center.coord[c]=move[c]
 
         l=[]
         for i in self.elem.points_list:
@@ -111,9 +117,9 @@ class mister():
             self.angle_r_knee=-math.pi / 16 * 7
 
     def getCoord(self):
-        head1 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body)  * 1.8 * self.size ), int(self.elem.center.coord["y"] - math.sin(self.angle_body)  * 1.8 * self.size) - self.size)
-        head2 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body)  * 1.8 *self.size + self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body)  * 1.8 * self.size - self.size/2))
-        head3 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body)  * 1.8 * self.size - self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body)  * 1.8 * self.size - self.size/2))
+        head1 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size) - self.size)
+        head2 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size + self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))
+        head3 = util.coord(int(self.elem.center.coord["x"] + math.cos(self.angle_body) * 1.8 * self.size - self.size / 2), int(self.elem.center.coord["y"] - math.sin(self.angle_body) * 1.8 * self.size - self.size/2))
         shouldersX = int(self.elem.center.coord["x"] + 3 / 2 *  math.cos(self.angle_body) * self.size)
         shouldersY = int(self.elem.center.coord["y"] - 3 / 2 *  math.sin(self.angle_body) * self.size)
         arm1 = util.coord(int(shouldersX + math.cos(self.angle_l_arm) * self.size * 1.3), int(shouldersY -  math.sin(self.angle_l_arm) * self.size * 1.3))
@@ -122,7 +128,7 @@ class mister():
         legLY = int(self.elem.center.coord["y"] + 1.8 * self.size)
         legRX = int(self.elem.center.coord["x"] + math.cos(self.angle_r_leg) * self.size)
         legRY = int(self.elem.center.coord["y"] + 1.8 * self.size)
-        foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + 1.6 * self.size))
-        foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(self.elem.center.coord["y"] + 1.6 * self.size))
+        foot1 = util.coord(int(legLX + math.cos(self.angle_l_knee) * self.size * 0.8), int(legLY - math.sin(self.angle_l_knee) * self.size * 0.8))
+        foot2 = util.coord(int(legRX + math.cos(self.angle_r_knee) * self.size * 0.8), int(legRY - math.sin(self.angle_r_knee) * self.size * 0.8))
 
         return [head1, head2, head3, arm1, arm2, foot1, foot2]
