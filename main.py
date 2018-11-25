@@ -88,6 +88,7 @@ while mainrun:
     for objet in GV.obj_list:
         if objet.image(main, player=player1, GV=GV):
             GV.obj_list.remove(objet)
+            GV.elem_list.remove(objet.elem)
 
 
 
