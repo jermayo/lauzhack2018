@@ -74,7 +74,7 @@ player1=player.mister(larg/8, haut/2, GV)
 player1.elem.points_list=player1.getCoord()
 maps.setmap1(GV, main, GV.size, haut, player1)
 mainrun=True
-next_level=0
+tim=0
 
 while mainrun:
 
@@ -88,6 +88,7 @@ while mainrun:
         GV=utilitary.GlobalVariable()
         GV.level_pass=0
         GV.size=larg/maxMapSize
+        tim=0
 
         player1=player.mister(larg/8, haut/2, GV)
         player1.elem.points_list=player1.getCoord()
@@ -97,6 +98,11 @@ while mainrun:
     #    main.fill((255,255,255))
 
     if GV.level_pass==1:
+        while(tim<500):
+            main.fill((255,255,255))
+            maps.setmaptr(GV, main, GV.size, haut, player1,tim)
+            tim+=1
+            pygame.display.flip()
         t=0
 
         GV=utilitary.GlobalVariable()
