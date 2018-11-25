@@ -46,7 +46,7 @@ class clock():
 
 class excla():
     def __init__(self,x,y,GV):
-        self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size))
+        self.elem=element(GV, [coord(x+GV.size/2,y-GV.size)],coord(x+GV.size/2,y-GV.size), collide=False)
         GV.obj_list.append(self)
         self.size = GV.size
         self.point_list=[(x+GV.size/3,y-GV.size*3/4),(x+GV.size*2/3,y-GV.size*3/4),(x+GV.size*3/4,y-2*GV.size),(x+GV.size/4,y-2*GV.size)]
@@ -58,7 +58,7 @@ class excla():
 class bullet():
 
     def __init__(self, x, y, angle, GV):
-        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)))
+        self.elem = element(GV, [coord(x,y)], coord(x,y), speed = coord(10*math.cos(angle), -10*math.sin(angle)), collide=False)
         GV.obj_list.append(self)
 
     def image(self, main, player=None, GV=None):
@@ -70,8 +70,21 @@ class bullet():
         y += self.elem.center.speed["y"] * GV.timeSpeed
         if(x < 0 or x > 1980 or y < 0 or y > 1080):
             return True
+<<<<<<< HEAD
         if(collision(player.elem.points_list, self.elem.points_list)):
             player.isAlive = False
+=======
+        a,b = collision(player.elem.points_list, self.elem.points_list)
+        if(a and b):
+            player.health -= 1
+            if(player.health == 0):
+                player.isDead = True
+            return True
+        for elem in GV.elem_list:
+            a,b = collision(elem.points_list, self.elem.points_list)
+            if(a and b):
+                return True
+>>>>>>> 7d5c867e9deeae1e3c840e092aba537f88796fc4
         self.elem.center.coord["x"] = x
         self.elem.center.coord["y"] = y
         return False
