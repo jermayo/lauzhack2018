@@ -30,7 +30,7 @@ def key_action(keys, fullscreen, player1, time):
         player1.running=False
         player1.state(time)
         player1.elem.center.speed["x"]=0
-    if keys[pygame.K_w] and player1.is_grounded:
+    if keys[pygame.K_w] and player1.is_grounded and not player1.on_wall:
         player1.elem.center.speed["y"]=-17
 
 
